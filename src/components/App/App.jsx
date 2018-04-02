@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
 import { Routes } from '../Routes/Routes';
-import { Header } from '../Header/Header';
+import Header from '../Header/Header';
 
 const { Content, Footer } = Layout;
 

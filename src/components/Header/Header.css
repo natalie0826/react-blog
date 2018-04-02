@@ -2,12 +2,88 @@
 
 .header {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 
-.logo {
-    margin-right: 2em;
+.menu-items__logo {
+    flex-grow: 1;
+}
+
+.menu-items__items {
+    display: flex;
+    line-height: 64px;
+    flex-grow: 15;
+}
+
+.menu-items__icons {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.menu-items__username {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-items__search,
+.menu-items__avatar {
+    margin: 0 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.menu-items__search {
+    width: 150px;
+    color: #553194;
+}
+
+input[type="text"] {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all .3s ease-in;
+}
+
+input[type="text"]:active,
+input[type="text"]:focus {
+    outline: none;
+    border-color: #ffffff;
+    background: #ffffff;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all .3s ease-in;
+}
+
+input[type="text"]:hover {
+    outline: none;
+    border-color: #ffffff;
+    transition: all .3s ease-in;
+}
+
+.ant-input::selection,
+.ant-input-search::selection,
+.menu-items__search::selection,
+.ant-input-affix-wrapper::selection,
+input[type="text"]::selection {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu-items__search:hover {
+    color: #553194;
+    border-color: #553194;
+}
+
+.menu-items__divider {
+    width: 1px;
+    height: 30px;
+    margin: 6px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.menu-item__dropdown {
+    margin-left: 15%;
+}
+
+.menu-item__dropdown-icon {
+    margin-right: 15px;
 }
 
 .ant-layout-header,
@@ -15,7 +91,7 @@
     background-color: #673ab7;
     color: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0);
-    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0);
 }
 
 .ant-menu,
@@ -53,4 +129,18 @@
 
 .submenu-item {
     color: #444444;
+}
+
+@media (max-width: 850px) { 
+    .menu-items__search,
+    .menu-items__divider {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    .menu-items__avatar,
+    .menu-items__username {
+        display: none;
+    }
 }
