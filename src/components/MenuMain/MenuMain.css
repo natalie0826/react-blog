@@ -1,100 +1,95 @@
 @import '~antd/dist/antd.css';
 
-.header {
+/* CUSTOM STYLES */
+
+.menu-main {
     display: flex;
 }
 
-.menu-items__logo {
+.menu-main__logo {
     flex-grow: 1;
 }
 
-.menu-items__items {
+.menu-main__items {
     display: flex;
     line-height: 64px;
     flex-grow: 15;
 }
 
-.menu-items__icons {
+.menu-main__left {
     display: flex;
     align-items: center;
     flex-grow: 1;
 }
 
-.menu-items__username {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.menu-items__search,
-.menu-items__avatar {
+.menu-main__left-items {
     margin: 0 10px;
     background-color: rgba(255, 255, 255, 0.2);
     cursor: pointer;
 }
 
-.menu-items__search {
+.menu-main__left-items--username {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-main__left-items--search {
     width: 150px;
     color: #553194;
 }
 
-input[type="text"] {
-    border-color: rgba(255, 255, 255, 0.3);
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: all .3s ease-in;
-}
-
-input[type="text"]:active,
-input[type="text"]:focus {
-    outline: none;
-    border-color: #ffffff;
-    background: #ffffff;
-    background-color: rgba(255, 255, 255, 0.3);
-    transition: all .3s ease-in;
-}
-
-input[type="text"]:hover {
-    outline: none;
-    border-color: #ffffff;
-    transition: all .3s ease-in;
-}
-
-.ant-input::selection,
-.ant-input-search::selection,
-.menu-items__search::selection,
-.ant-input-affix-wrapper::selection,
-input[type="text"]::selection {
-    border-color: rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.menu-items__search:hover {
+.menu-main__left-items--search:hover {
     color: #553194;
     border-color: #553194;
 }
 
-.menu-items__divider {
+.menu-main__divider {
     width: 1px;
     height: 30px;
     margin: 6px;
     background: rgba(255, 255, 255, 0.5);
 }
 
-.menu-item__dropdown {
+.menu-main__dropdown {
     margin-left: 15%;
 }
 
-.menu-item__dropdown-icon {
+.menu-main__dropdown-icon {
     margin-right: 15px;
 }
 
-.ant-layout-header,
-.ant-menu {
-    background-color: #673ab7;
-    color: #ffffff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0);
+.menu-main__links {
+    text-decoration: none;
+    color: #ffffff !important;
+    transition: all .3s ease-in;
 }
 
-.header {
-    box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.3);
+.menu-main__links:hover {
+    color: #ffeeda;
+    transition: all .3s ease-in;
+}
+
+.menu-main__links--dark {
+    color: #444444 !important;
+}
+
+.menu-main__links--dark:hover {
+    color: #0f0f0f !important;
+}
+
+.menu-main__links--light {
+    color: #444444 !important;
+}
+
+.menu-main__links--light:hover {
+    color: #ffeeda !important;
+}
+
+/* OVERRIDING ANT STYLES */
+
+input[type="text"] {
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all .3s ease-in;
 }
 
 .ant-menu,
@@ -134,16 +129,29 @@ input[type="text"]::selection {
     color: #444444;
 }
 
+.ant-layout-header,
+.ant-menu {
+    background-color: #673ab7;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+.header {
+    box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* MEDIA QUERIES */
+
 @media (max-width: 850px) { 
-    .menu-items__search,
-    .menu-items__divider {
+    .menu-main__search,
+    .menu-main__divider {
         display: none;
     }
 }
 
 @media (max-width: 670px) {
-    .menu-items__avatar,
-    .menu-items__username {
+    .menu-main__avatar,
+    .menu-main__username {
         display: none;
     }
 }

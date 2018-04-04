@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
 import { Routes } from '../Routes/Routes';
-import Header from '../Header/Header';
+import MenuMain from '../MenuMain/MenuMain';
 
 const { Content, Footer } = Layout;
 
@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <Router>
       <Layout className="layout">
-          <Header />
+          <MenuMain />
           <Routes />
           <Content style={{ padding: '0 50px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
