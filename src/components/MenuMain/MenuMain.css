@@ -28,8 +28,18 @@
     cursor: pointer;
 }
 
+.menu-main__left-items:hover {
+    color: #553194;
+    border-color: #553194;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
 .menu-main__left-items--username {
     color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-main__left-items--username:hover {
+    color: #ffeeda;
 }
 
 .menu-main__left-items--search {
