@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Layout, Breadcrumb } from 'antd';
 
 import { Routes } from '../Routes/Routes';
+import { MainPage } from '../MainPage/MainPage';
 import MenuMain from '../MenuMain/MenuMain';
 
 const { Content, Footer } = Layout;
@@ -19,8 +20,11 @@ export const App = () => {
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+              <MainPage />
+            </div>
           </Content>
+          
           <Footer style={{ textAlign: 'center' }}>
             Ant Design ©2016 Created by Ant UED
           </Footer>
