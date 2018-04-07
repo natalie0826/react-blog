@@ -4,6 +4,7 @@
 
 .menu-main {
     display: flex;
+    box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.3);
 }
 
 .menu-main__logo {
@@ -136,8 +137,25 @@ input[type="text"] {
     border-bottom: 1px solid rgba(0, 0, 0, 0);
 }
 
-.header {
-    box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 0.3);
+/* search input */
+
+input.ant-input,
+input.ant-input:focus,
+input.ant-input:active,
+input.ant-input:visited {
+    border: none;
+    border-radius: 0 !important;
+}
+
+.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled),
+.ant-input-affix-wrapper .ant-input:not(:last-child):focus,
+.ant-input-affix-wrapper .ant-input:not(:last-child):active,
+.ant-input-affix-wrapper .ant-input:not(:last-child):visited {
+  border-radius: none;
+  outline: 0;
+  border: 0;
+  border-color: transparent !important;
+  box-shadow: none;
 }
 
 /* MEDIA QUERIES */
