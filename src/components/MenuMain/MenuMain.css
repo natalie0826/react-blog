@@ -11,6 +11,12 @@
     flex-grow: 1;
 }
 
+.menu-main__logo svg {
+    margin-top: 20px;
+    fill: #ffffff;
+    height: 1.5em;
+}
+
 .menu-main__items {
     display: flex;
     line-height: 64px;
@@ -161,15 +167,15 @@ input.ant-input:visited {
 /* MEDIA QUERIES */
 
 @media (max-width: 850px) { 
-    .menu-main__search,
+    .menu-main__left-items--search,
     .menu-main__divider {
         display: none;
     }
 }
 
 @media (max-width: 670px) {
-    .menu-main__avatar,
-    .menu-main__username {
+    .menu-main__left-items,
+    .menu-main__left-items--username {
         display: none;
     }
 }
