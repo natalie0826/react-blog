@@ -141,6 +141,7 @@ input[type="text"] {
     background-color: #673ab7;
     color: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0);
+    /* лавандовый #ac27ff, мятный #0dd2b6, оранжевый #ff6a3e */
 }
 
 /* search input */
