@@ -1,10 +1,12 @@
 import React from 'react';
-import { Row, Col, Icon, Avatar, Divider } from 'antd';
+import { Row, Col, Icon, Avatar, Divider, Button } from 'antd';
 
 import './MainPage.css';
 
 export const MainPage = () => {
     return (
+        <div>
+        {/* header posts */}
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24} sm={24} md={24} lg={16} xl={16}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -112,12 +114,85 @@ export const MainPage = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="recent-posts__button">
+                                <Button type="dashed" size="large" className="recent-posts__button--purple">More</Button>
+                            </div>
                         </div>
                     </Col>
                 </Row>
             </Col>
         </Row>
 
+        {/* two posts */}
+        <br/>
+        <br/>
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                <div className="post-horizontal">
+                    <div className="post-horizontal__image">
+                        <img src="https://images.unsplash.com/photo-1516549843585-2c4cf2e073d2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f780a0e96db11669bc73e99f35c5e437&auto=format&fit=crop&w=392&q=80" alt="" />
+                    </div>
+                    <div className="post-horizontal__description">
+                        <div className="card__description">
+                            <div className="info">
+                                {/* <span class="line _long"></span>
+                        <span class="line _short"></span> */}
+                                <h1 className="info__title">Some more posts</h1>
+                                <div className="info__subtitle">
+                                    <span>Pina Chaudhary</span>
+                                    <span> - </span>
+                                    <span className="info__subtitle--light">15 jul 2018</span>
+                                </div>
+                                <hr className="info__divider" />
+                                <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
+                                <Divider />
+                                <div className="info__footer">
+                                    <span className="info__comments">
+                                        <Icon type="message" />5 comments
+                                    </span>
+                                    <span className="info__time-read">
+                                        <Icon type="dashboard" />3 minutes read
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+                <div className="post-horizontal">
+                    <div className="post-horizontal__image">
+                        <img src="https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dd4d735954f33290fbf984e4eb7abe32&auto=format&fit=crop&w=967&q=80" alt="" />
+                    </div>
+                    <div className="post-horizontal__description">
+                        <div className="card__description">
+                            <div className="info">
+                                {/* <span class="line _long"></span>
+                        <span class="line _short"></span> */}
+                                <h1 className="info__title">Some more posts</h1>
+                                <div className="info__subtitle">
+                                    <span>Pina Chaudhary</span>
+                                    <span> - </span>
+                                    <span className="info__subtitle--light">15 jul 2018</span>
+                                </div>
+                                <hr className="info__divider" />
+                                <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
+                                <Divider />
+                                <div className="info__footer">
+                                    <span className="info__comments">
+                                        <Icon type="message" />5 comments
+                                    </span>
+                                    <span className="info__time-read">
+                                        <Icon type="dashboard" />3 minutes read
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Col>
+        </Row>
+        </div>
         /*
         <!-- programming post -->
         <div class="container">
