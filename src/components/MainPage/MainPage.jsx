@@ -3,9 +3,12 @@ import { Row, Col, Icon, Avatar, Divider, Button } from 'antd';
 
 import './MainPage.css';
 
+import { SignIn } from '../../containers/SignIn';
+
 export const MainPage = () => {
     return (
         <div>
+            <SignIn />
         {/* header posts */}
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24} sm={24} md={24} lg={16} xl={16}>
