@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 import { MenuItems } from './MenuItems/MenuItems';
 import { MenuSearch } from './MenuSearch/MenuSearch';
 import { MenuUser } from './MenuUser/MenuUser';
-import { MenuLogin } from './MenuLogin/MenuLogin';
+import { SignInUp } from '../../containers/SignInUp';
 
 import './MenuMain.css';
 
@@ -41,7 +41,7 @@ export default class MenuMain extends React.Component {
                 <div className="menu-main__left">
                     <MenuSearch />
                     <div className="menu-main__divider"></div>
-                    {this.props.isLogged ? <MenuUser /> : <MenuLogin />}
+                    {this.props.isLogged ? <MenuUser /> : <SignInUp />}
                 </div>
             </Header>
         );

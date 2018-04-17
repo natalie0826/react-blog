@@ -1,12 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
-export const MenuLogin = () => {
-    return (
-        <Link to="/profile">
-            <Button shape="circle" icon="login" size="large" className="menu-main__left-items" />
-            <span className="menu-main__left-items--username">Login</span>
-        </Link>
-    );
+import RegisterModal from '../../Modals/RegisterModal/RegisterModal';
+import SignInModal from '../../Modals/SignInModal/SignInModal';
+
+export default class MenuLogin extends React.Component {
+    static propTypes = {
+        modalType: PropTypes.string.isRequired,
+        modalMode: PropTypes.bool.isRequired,
+        openModal: PropTypes.func.isRequired,
+        closeModal: PropTypes.func.isRequired
+    };
+
+    showModalSignIn = () => {
+        this.props.openModal('sign-in');
+    }
+
+    showModalSignUp = () => {
+        this.props.openModal('sign-up');
+    }
+
+    render() {
+        return (
+            <div className="menu-login">
+                <span className="menu-main__left-items--username" onClick={this.showModalSignIn}>Sign in</span>
+                <span> / </span>
+                <span className="menu-main__left-items--username" onClick={this.showModalRegister}>Get started</span>
+                {this.props.modalType === 'sign-in'
+                    ? <SignInModal visible={this.props.modalMode} />
+                    : <RegisterModal visible={this.props.modalMode} />
+                }
+            </div>
+        );
+    }
+    
 };

@@ -2,19 +2,19 @@ import { connect } from 'react-redux';
 
 import { signInGoogle } from '../actions/auth';
 import { openModal, closeModal } from '../actions/modal';
-import AuthModal from '../components/AuthModal/AuthModal';
+import MenuLogin from '../components/MenuMain/MenuLogin/MenuLogin';
 
 const mapStateToProps = state => ({
-    modalMode: state.modalMode
+    modalMode: state.getIn(['modal', 'modalMode']),
+    modalType: state.getIn(['modal', 'modalType'])
 });
 
 const mapDispatchToProps = dispatch => ({
-    signInGoogle: () => dispatch(signInGoogle),
     openModal: () => dispatch(openModal),
     closeModal: () => dispatch(closeModal)
 });
 
-export const SignIn = connect(
+export const SignInUp = connect(
     mapStateToProps,
     mapDispatchToProps
-)(AuthModal);
+)(MenuLogin);
