@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { signInGoogle } from '../actions/auth';
-import { Auth } from '../components/Auth/Auth';
+import { AuthModal } from '../components/AuthModal/AuthModal';
 
 // const mapStateToProps = state => ({
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 export const SignIn = connect(
     null,
     mapDispatchToProps
-)(Auth);
+)(AuthModal);

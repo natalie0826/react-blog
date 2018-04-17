@@ -1,15 +1,17 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 
-export const Auth = ({ signInGoogle }) => {
+export const AuthModal = ({ signInGoogle }) => {
     const responseGoogle = (res) => {
-        console.log('response from google', res);
+        
         const postData = {
-            name: res.w3.ig,
-            provider: 'google',
+            name: res.w3.ofa,
+            surname: res.w3.wea,
             email: res.w3.U3,
             token: res.Zi.access_token,
+            avatar: res.w3.Paa
         };
+        console.log('response from google', postData);
         signInGoogle();
     };
 
