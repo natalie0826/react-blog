@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import{ Menu, Dropdown, Avatar, Icon } from 'antd';
+import { Menu, Dropdown, Avatar, Icon } from 'antd';
 
 export const MenuUser = () => {
     const { Item, Divider } = Menu;
