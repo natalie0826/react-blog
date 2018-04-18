@@ -10,8 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    openModal: () => dispatch(openModal),
-    closeModal: () => dispatch(closeModal)
+    openModal: (modalType) => dispatch(openModal(modalType)),
+    closeModal: () => dispatch(closeModal())
 });
 
 export const SignInUp = connect(

@@ -1,5 +1,3 @@
-@import '~antd/dist/antd.css';
-
 /* CUSTOM STYLES */
 
 .menu-main {
@@ -36,6 +34,7 @@
 }
 
 .menu-main__left-items--username {
+    cursor: pointer;
     color: rgba(255, 255, 255, 0.8);
 }
 
@@ -96,7 +95,7 @@
 
 /* OVERRIDING ANT STYLES */
 
-input[type="text"] {
+.menu-main__left input[type="text"] {
     border-color: rgba(255, 255, 255, 0.3);
     background-color: rgba(255, 255, 255, 0.2);
     transition: all .3s ease-in;
@@ -149,18 +148,18 @@ input[type="text"] {
 
 /* search input */
 
-input.ant-input,
-input.ant-input:focus,
-input.ant-input:active,
-input.ant-input:visited {
+.menu-main__left input.ant-input,
+.menu-main__left input.ant-input:focus,
+.menu-main__left input.ant-input:active,
+.menu-main__left input.ant-input:visited {
     border: none;
     border-radius: 0 !important;
 }
 
-.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled),
-.ant-input-affix-wrapper .ant-input:not(:last-child):focus,
-.ant-input-affix-wrapper .ant-input:not(:last-child):active,
-.ant-input-affix-wrapper .ant-input:not(:last-child):visited {
+.menu-main__left .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled),
+.menu-main__left .ant-input-affix-wrapper .ant-input:not(:last-child):focus,
+.menu-main__left .ant-input-affix-wrapper .ant-input:not(:last-child):active,
+.menu-main__left .ant-input-affix-wrapper .ant-input:not(:last-child):visited {
   border-radius: none;
   outline: 0;
   border: 0;

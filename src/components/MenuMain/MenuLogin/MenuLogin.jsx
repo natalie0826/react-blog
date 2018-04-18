@@ -23,14 +23,20 @@ export default class MenuLogin extends React.Component {
     }
 
     render() {
+        const {
+            modalMode,
+            closeModal,
+            openModal
+        } = this.props;
+
         return (
             <div className="menu-login">
                 <span className="menu-main__left-items--username" onClick={this.showModalSignIn}>Sign in</span>
                 <span> / </span>
                 <span className="menu-main__left-items--username" onClick={this.showModalRegister}>Get started</span>
                 {this.props.modalType === 'sign-in'
-                    ? <SignInModal visible={this.props.modalMode} />
-                    : <RegisterModal visible={this.props.modalMode} />
+                    ? <SignInModal visible={modalMode} close={closeModal} open={openModal} />
+                    : <RegisterModal visible={modalMode} close={closeModal} open={openModal} />
                 }
             </div>
         );

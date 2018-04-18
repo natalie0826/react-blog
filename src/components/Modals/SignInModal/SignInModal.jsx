@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleLogin from 'react-google-login';
-import { Modal, Button } from 'antd';
+import { Modal, Button, Form, Icon, Input, Checkbox } from 'antd';
 
-export default class SignInModal extends React.Component {
+import './SignInModal.css';
+
+const FormItem = Form.Item;
+
+class SignInModal extends React.Component {
     static propTypes = {
         // signInGoogle: PropTypes.func.isRequired,
-        visible: PropTypes.bool.isRequired
+        visible: PropTypes.bool.isRequired,
+        close: PropTypes.func.isRequired,
+        open: PropTypes.func.isRequired
     };
 
     responseGoogle = (res) => {
@@ -17,7 +23,6 @@ export default class SignInModal extends React.Component {
             token: res.Zi.access_token,
             avatar: res.w3.Paa
         };
-        console.log('response from google', postData);
         this.props.signInGoogle();
     };
 
@@ -26,17 +31,19 @@ export default class SignInModal extends React.Component {
     }
 
     handleCancel = () => {
-        console.log('handle cancel');
+        this.props.close();
     }
 
     render() {
-        if (!this.props.modalMode) {
+        const { getFieldDecorator } = this.props.form;
+
+        if (!this.props.visible) {
             return null;
         }
 
         return (
             <Modal
-                visible={this.props.modalMode}
+                visible={this.props.visible}
                 title="Title"
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
@@ -47,20 +54,36 @@ export default class SignInModal extends React.Component {
                     </Button>,
                 ]}
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <Form onSubmit={this.handleSubmit} className="login-form">
+                    <FormItem>
+                        {getFieldDecorator('userName', {
+                            rules: [{ required: true, message: 'Please input your username!' }],
+                        })(
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                        )}
+                    </FormItem>
+                    <FormItem>
+                        {getFieldDecorator('password', {
+                            rules: [{ required: true, message: 'Please input your Password!' }],
+                        })(
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                        )}
+                    </FormItem>
+                    <FormItem>
+                        <h4>Sign in with</h4>
+                        <Icon type="google" style={{ fontSize: 20, color: '#d34836' }}>
+                            <GoogleLogin
+                                className="button google"
+                                clientId="672658121417-enp7uld7q92vrdlms2keir3jn8mtpsit.apps.googleusercontent.com"
+                                onSuccess={this.responseGoogle}
+                                onFailure={this.responseGoogle}
+                            />
+                        </Icon>
+                    </FormItem>
+                </Form>
             </Modal>
-            // <GoogleLogin
-            //     className="button google"
-            //     clientId="672658121417-enp7uld7q92vrdlms2keir3jn8mtpsit.apps.googleusercontent.com"
-            //     onSuccess={responseGoogle}
-            //     onFailure={responseGoogle}
-            // >
-            //     <span>SignIn with Google</span>
-            // </GoogleLogin>
         );
     }
 };
+
+export default Form.create()(SignInModal);
