@@ -12,7 +12,9 @@ class SignInModal extends React.Component {
         // signInGoogle: PropTypes.func.isRequired,
         visible: PropTypes.bool.isRequired,
         close: PropTypes.func.isRequired,
-        open: PropTypes.func.isRequired
+        open: PropTypes.func.isRequired,
+        signIn: PropTypes.func.isRequired,
+        error: PropTypes.string.isRequired,
     };
 
     responseGoogle = (res) => {
@@ -28,6 +30,12 @@ class SignInModal extends React.Component {
 
     handleOk = () => {
         console.log('handle OK');
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+                this.props.signIn(values.email, values.password);
+            }
+        });
     }
 
     handleCancel = () => {
@@ -40,26 +48,39 @@ class SignInModal extends React.Component {
         if (!this.props.visible) {
             return null;
         }
+        
+        const {
+            visible,
+            error,
+        } = this.props;
+
+        let errorItem;
+
+        if (visible && error) {
+            errorItem = <span style={{ 'color': 'red' }}>{error}</span>;
+        }
 
         return (
             <Modal
                 visible={this.props.visible}
-                title="Title"
+                title="Sign in"
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 footer={[
-                    <Button key="back" onClick={this.handleCancel}>Return</Button>,
-                    <Button key="submit" type="primary"  onClick={this.handleOk}>
-                    Submit
-                    </Button>,
+                    <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
+                    <Button key="submit" type="primary"  onClick={this.handleOk}>Sign in</Button>,
                 ]}
             >
                 <Form onSubmit={this.handleSubmit} className="login-form">
                     <FormItem>
-                        {getFieldDecorator('userName', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
+                        {getFieldDecorator('email', {
+                            rules: [{
+                                type: 'email', message: 'The input is not valid E-mail!',
+                            }, {
+                                required: true, message: 'Please input your E-mail!',
+                            }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                            <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} type="email" placeholder="Email" />
                         )}
                     </FormItem>
                     <FormItem>
@@ -69,6 +90,7 @@ class SignInModal extends React.Component {
                             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
                         )}
                     </FormItem>
+                    {errorItem}
                     <FormItem>
                         <h4>Sign in with</h4>
                         <Icon type="google" style={{ fontSize: 20, color: '#d34836' }}>

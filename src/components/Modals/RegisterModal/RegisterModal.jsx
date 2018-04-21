@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GoogleLogin from 'react-google-login';
-import { Modal, Button } from 'antd';
+import { Form, Input, Tooltip, Icon, Row, Col, Checkbox, Button, Modal } from 'antd';
 
-export default class RegisterModal extends React.Component {
+const FormItem = Form.Item;
+
+class RegisterModal extends React.Component {
     static propTypes = {
         // signInGoogle: PropTypes.func.isRequired,
-        visible: PropTypes.bool.isRequired
+        visible: PropTypes.bool.isRequired,
+        close: PropTypes.func.isRequired,
     };
 
     responseGoogle = (res) => {
@@ -23,35 +26,100 @@ export default class RegisterModal extends React.Component {
 
     handleOk = () => {
         console.log('handle OK');
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+                // this.props.signIn(values.email, values.password);
+            }
+        });
     }
 
     handleCancel = () => {
-        console.log('handle cancel');
+      this.props.close();
     }
 
     render() {
-        if (!this.props.modalMode) {
+        if (!this.props.visible) {
             return null;
         }
+        const { getFieldDecorator } = this.props.form;   
 
         return (
             <Modal
-                visible={this.props.modalMode}
-                title="Title"
+                visible={this.props.visible}
+                title="Sign up"
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 footer={[
-                    <Button key="back" onClick={this.handleCancel}>Return</Button>,
-                    <Button key="submit" type="primary"  onClick={this.handleOk}>
-                    Submit
-                    </Button>,
+                    <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
+                    <Button key="submit" type="primary" onClick={this.handleOk}>Sign Up</Button>,
                 ]}
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+      <Form onSubmit={this.handleSubmit}>
+        <FormItem hasFeedback>
+          {getFieldDecorator('email', {
+            rules: [{
+              type: 'email', message: 'The input is not valid E-mail!',
+            }, {
+              required: true, message: 'Please input your E-mail!',
+            }],
+          })(
+            <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} type="email" placeholder="Email" />
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('password', {
+            rules: [{
+              required: true, message: 'Please input your password!',
+              min: 6, message: 'Your password shoulbe at least 6 charaters'
+            }, {
+              validator: this.validateToNextPassword,
+            }],
+          })(
+            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('confirm', {
+            rules: [{
+              required: true, message: 'Please confirm your password!',
+              min: 6, message: 'Your password shoulbe at least 6 charaters'
+            }, {
+              validator: this.compareToFirstPassword,
+            }],
+          })(
+            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Confirm password" onBlur={this.handleConfirmBlur} />
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('name', {
+            rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
+          })(
+            <Input prefix={<Icon type="user-add" style={{ color: 'rgba(0,0,0,.25)' }} />} type="text" placeholder="Name" />
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('surname', {
+            rules: [{ required: true, message: 'Please input your surname!', whitespace: true }],
+          })(
+            <div>
+              <Input prefix={<Icon type="user-add" style={{ color: 'rgba(0,0,0,.25)' }} />} type="text" placeholder="Surname" />
+            </div>
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('agreement', {
+            valuePropName: 'checked',
+          })(
+            <div>
+              <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+              <Tooltip title="You should read our agreement to be aware of our blog rules">
+                  <Icon type="question-circle-o" />
+              </Tooltip>
+            </div>
+          )}
+        </FormItem>
+      </Form>
             </Modal>
             // <GoogleLogin
             //     className="button google"
@@ -64,3 +132,5 @@ export default class RegisterModal extends React.Component {
         );
     }
 };
+
+export default Form.create()(RegisterModal);

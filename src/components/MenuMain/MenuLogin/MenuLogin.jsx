@@ -11,7 +11,9 @@ export default class MenuLogin extends React.Component {
         modalType: PropTypes.string.isRequired,
         modalMode: PropTypes.bool.isRequired,
         openModal: PropTypes.func.isRequired,
-        closeModal: PropTypes.func.isRequired
+        closeModal: PropTypes.func.isRequired,
+        signIn: PropTypes.func.isRequired,
+        error: PropTypes.string.isRequired,
     };
 
     showModalSignIn = () => {
@@ -25,18 +27,35 @@ export default class MenuLogin extends React.Component {
     render() {
         const {
             modalMode,
+            modalType,
             closeModal,
-            openModal
+            openModal,
+            signIn,
+            error
         } = this.props;
+
+        console.log('visible', modalMode, 'type', modalType);
 
         return (
             <div className="menu-login">
                 <span className="menu-main__left-items--username" onClick={this.showModalSignIn}>Sign in</span>
                 <span> / </span>
-                <span className="menu-main__left-items--username" onClick={this.showModalRegister}>Get started</span>
-                {this.props.modalType === 'sign-in'
-                    ? <SignInModal visible={modalMode} close={closeModal} open={openModal} />
-                    : <RegisterModal visible={modalMode} close={closeModal} open={openModal} />
+                <span className="menu-main__left-items--username" onClick={this.showModalSignUp}>Get started</span>
+                {modalType === 'sign-in'
+                    ?
+                    <SignInModal
+                        visible={modalMode}
+                        close={closeModal}
+                        open={openModal}
+                        signIn={signIn}
+                        error={error}
+                    />
+                    :
+                    <RegisterModal
+                        visible={modalMode}
+                        close={closeModal}
+                        open={openModal}
+                    />
                 }
             </div>
         );
