@@ -10,7 +10,15 @@ class RegisterModal extends React.Component {
         // signInGoogle: PropTypes.func.isRequired,
         visible: PropTypes.bool.isRequired,
         close: PropTypes.func.isRequired,
+        signUp: PropTypes.func.isRequired,
     };
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        isLoading: false
+      }
+    }
 
     responseGoogle = (res) => {
         const postData = {
@@ -25,11 +33,11 @@ class RegisterModal extends React.Component {
     };
 
     handleOk = () => {
-        console.log('handle OK');
+        
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                // this.props.signIn(values.email, values.password);
+                this.props.signUp(values.email, values.name, values.surname, values.password);
             }
         });
     }
@@ -42,7 +50,7 @@ class RegisterModal extends React.Component {
         if (!this.props.visible) {
             return null;
         }
-        const { getFieldDecorator } = this.props.form;   
+        const { getFieldDecorator } = this.props.form;
 
         return (
             <Modal
@@ -50,6 +58,7 @@ class RegisterModal extends React.Component {
                 title="Sign up"
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
+                confirmLoading={this.isLoading}
                 footer={[
                     <Button key="back" onClick={this.handleCancel}>Cancel</Button>,
                     <Button key="submit" type="primary" onClick={this.handleOk}>Sign Up</Button>,
@@ -67,7 +76,7 @@ class RegisterModal extends React.Component {
             <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} type="email" placeholder="Email" />
           )}
         </FormItem>
-        <FormItem>
+        <FormItem hasFeedback>
           {getFieldDecorator('password', {
             rules: [{
               required: true, message: 'Please input your password!',
@@ -79,7 +88,7 @@ class RegisterModal extends React.Component {
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
           )}
         </FormItem>
-        <FormItem>
+        <FormItem hasFeedback>
           {getFieldDecorator('confirm', {
             rules: [{
               required: true, message: 'Please confirm your password!',
@@ -91,14 +100,14 @@ class RegisterModal extends React.Component {
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Confirm password" onBlur={this.handleConfirmBlur} />
           )}
         </FormItem>
-        <FormItem>
+        <FormItem hasFeedback>
           {getFieldDecorator('name', {
             rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
           })(
             <Input prefix={<Icon type="user-add" style={{ color: 'rgba(0,0,0,.25)' }} />} type="text" placeholder="Name" />
           )}
         </FormItem>
-        <FormItem>
+        <FormItem hasFeedback>
           {getFieldDecorator('surname', {
             rules: [{ required: true, message: 'Please input your surname!', whitespace: true }],
           })(

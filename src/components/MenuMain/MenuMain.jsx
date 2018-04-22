@@ -14,11 +14,7 @@ const { Header } = Layout;
 
 export default class MenuMain extends React.Component {
     static propTypes = {
-        isLogged: PropTypes.bool,
-    };
-
-    static defaultProps = {
-        isLogged: false,
+        isAuth: PropTypes.bool.isRequired,
     };
 
     render() {
@@ -41,7 +37,7 @@ export default class MenuMain extends React.Component {
                 <div className="menu-main__left">
                     <MenuSearch />
                     <div className="menu-main__divider"></div>
-                    {this.props.isLogged ? <MenuUser /> : <SignInUp />}
+                    {this.props.isAuth ? <MenuUser /> : <SignInUp />}
                 </div>
             </Header>
         );

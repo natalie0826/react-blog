@@ -1,0 +1,258 @@
+.post-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1024px) { 
+    .post-container {
+        flex-direction: column;
+    }
+
+    .post {
+        margin-right: 0;
+    }
+
+    .post-image {
+        margin-top: 30px;
+        height: 300px !important;
+        width: 100%;
+    }
+
+    .post-actions,
+    .sticky {
+        display: none !important;
+    }
+}
+
+.post {
+    display: flex;
+    flex-basis: 40%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 64px;
+}
+
+.post-category {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.post-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 3em;
+    font-weight: 800;
+}
+
+.post-subtitle,
+.post-tags-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #7c7c7c;
+    margin: 25px 0;
+}
+
+.post-author {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+
+.author-avatar {
+    width: 60px;
+    height: 60px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+    border: 1px solid rgba(240, 240, 240, 0.85);
+    box-shadow: 0px 0px 0px 2px #673ab7;
+}
+
+.author-description {
+    margin: 0 1.6em;
+}
+
+.description-name {
+    font-size: 1.2em;
+    color: #222222;
+}
+
+.description-date {
+    color: #a5a5a5;
+    margin-right: 10px;
+}
+
+.description-minutes {
+    color: #a5a5a5;
+    margin-left: 10px;
+}
+
+.post-image {
+    display: flex;
+    flex-basis: 60%;
+    height: auto;
+    width: 100%;
+    max-height: 700px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center center;
+    transition: all .3s ease-in;
+}
+
+.post-image:hover {
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease-in;
+}
+
+.post-text-container {
+    margin: 50px auto 0 auto;
+    width: 70%;
+}
+
+.post-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: absolute;
+    top: 600px;
+    left: 100px;
+
+    z-index: 999;
+
+    height: 170px;
+}
+
+.sticky {
+    position: fixed;
+    top: 100px;
+    left: 118px;
+}
+
+.post-text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 2em;
+    text-align: justify;
+}
+
+.post-text p {
+    margin: 20px 0;
+}
+
+.post-additional {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post-tags {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    margin: 20px 20px 20px 0;
+}
+
+.post-tags > .ant-tag {
+    margin: 5px;
+}
+
+.post-author__flex {
+    flex: 1;
+}
+
+.heading-container {
+    margin: 30px auto;
+}
+
+.heading {
+    font-family: 'Motserrat', sans-serif;
+    font-size: 1.9em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #333333;
+}
+
+/* comments */
+
+.comment {
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+.comment li {
+    list-style-type: none;
+
+}
+
+.comment .comment-author {
+    color: #f26c4f;
+    font-weight: 600;
+}
+
+.comment .comment-date {
+    font-style: italic;
+}
+
+.img-user {
+    float: left;
+	margin: 10px 10px 10px 0;
+}
+
+.comment:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.comment-body {
+    text-decoration: none;
+    color: #000000;
+}
+
+.comment-info {
+    padding-top: 5px;
+}
+
+.comment-info p {
+    margin-bottom: 0;
+}
+
+.comment-info .comment-info-text {
+    white-space: pre-wrap;
+}
+
+.comment-body .comment-info .comment-reply {
+    border: 0;
+    background: none;
+    color: #c2c2c2;
+    text-decoration: underline;
+    font-style: italic;
+    font-style: 0.5em;
+    cursor: pointer;
+}
+
+.comment-body .comment-info .comment-reply:focus {
+    outline: 0;
+    border: 0;
+}
+
+.comment-remove {
+    float: right;
+    position: relative;
+    top: 5px;
+    color: rgba(78, 0, 0, 0);
+    transition: all .3s ease-in;
+}
+
+.comment:hover .comment-remove{
+    color: rgba(78, 0, 0, 1);
+    transition: all .3s ease-in;
+}
+
+.comment-deleted {
+    color: #c2c2c2;
+}

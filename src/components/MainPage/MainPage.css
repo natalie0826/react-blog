@@ -41,7 +41,7 @@
 }
 
 .card__description--little {
-    padding: 1em 1em 0 1em;
+    padding: .5em 1em 0 1em;
 }
 
 .info__subtitle {
@@ -129,8 +129,9 @@ p.recent-posts__divider span.recent-posts__divider {
 .recent-posts__title {
     font-size: 1.2em;
     font-weight: 700;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Monsterrat', sans-serif;
     letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
 .post-img {
@@ -172,6 +173,7 @@ p.recent-posts__divider span.recent-posts__divider {
 }
 
 .recent-posts__button--purple {
+    margin-top: 0.2em;
     text-transform: uppercase;
     font-weight: 500 !important;
 }
@@ -217,48 +219,121 @@ p.recent-posts__divider span.recent-posts__divider {
     margin: 20px 0 0 0 !important;
 }
 
-/*two posts*/
-
-.post-horizontal {
-    display: flex;
-    flex-direction: row;
-    height: 250px;
-    background-color: #ffffff;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 4px;
-}
-
-.post-horizontal__image {
-  object-fit: cover;
-}
-
-.post-horizontal__image img {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: cover;
-
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-}
-
-.post-horizontal__description {
-    padding-bottom: 1em;
-}
-
 .info__footer {
     margin: 10px 0;
     text-transform: uppercase;
     color: #cccccc;
 }
 
-.info__comments > .anticon,
-.info__comments > .anticon-message,
-.info__time-read > .anticon,
-.info__time-read > .anticon-message {
+.info__comments>.anticon,
+.info__comments>.anticon-message,
+.info__time-read>.anticon,
+.info__time-read>.anticon-message {
     margin-right: 5px;
 }
 
 .info__time-read {
     margin-left: 20px;
+}
+
+.category-block {
+    margin-top: 50px;
+}
+
+/* programming */
+
+.post-horizontal-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    padding: 0;
+    margin-bottom: 25px;
+    transition: all .3s ease-in;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.post-horizontal {
+    display: flex;
+    flex-basis: 60%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 30px;
+    padding: 20px 20px 20px 0;
+}
+
+.post-horizontal-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.post-horizontal-image {
+    display: flex;
+    flex-basis: 40%;
+    height: auto;
+    width: 100%;
+    max-height: 700px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.post-horizontal-container:hover {
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease-in;
+}
+
+.info__text-no-margin {
+    margin: 0;
+}
+
+.info__footer-margin {
+    margin: 20px 0 0 0;
+}
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+
+.sidebar-block {
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 20px 2em;
+    background-color: #ffffff;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.social-network {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* top posts */
+
+.top-one {
+    display: flex;
+    align-items: flex-start;
+    /* justify-content: space-between; */
+}
+
+.top-one-number {
+    font-size: 3em;
+    font-weight: 600;
+    color: #cccccc;
+    margin-right: 20px;
+}
+
+.top-tags {
+    margin: 0;
 }

@@ -13,7 +13,9 @@ export default class MenuLogin extends React.Component {
         openModal: PropTypes.func.isRequired,
         closeModal: PropTypes.func.isRequired,
         signIn: PropTypes.func.isRequired,
+        signUp: PropTypes.func.isRequired,
         error: PropTypes.string.isRequired,
+        isAuth: PropTypes.bool.isRequired
     };
 
     showModalSignIn = () => {
@@ -31,6 +33,8 @@ export default class MenuLogin extends React.Component {
             closeModal,
             openModal,
             signIn,
+            signUp,
+            isAuth,
             error
         } = this.props;
 
@@ -49,12 +53,15 @@ export default class MenuLogin extends React.Component {
                         open={openModal}
                         signIn={signIn}
                         error={error}
+                        isLoading={isAuth}
                     />
                     :
                     <RegisterModal
                         visible={modalMode}
                         close={closeModal}
                         open={openModal}
+                        signUp={signUp}
+                        isLoading={isAuth}
                     />
                 }
             </div>

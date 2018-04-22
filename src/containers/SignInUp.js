@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
     modalMode: state.getIn(['modal', 'modalMode']),
     modalType: state.getIn(['modal', 'modalType']),
     error: state.getIn(['auth', 'error']),
+    isAuth: state.getIn(['auth', 'isAuth']),
 });
 
 const mapDispatchToProps = dispatch => ({

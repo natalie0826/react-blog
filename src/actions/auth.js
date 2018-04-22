@@ -9,14 +9,14 @@ export const setUser = (user) => ({
     },
 });
 
-export const signInGoogle = (user) => {
+export const signInGoogle = (email, name, surname, password) => {
     return (dispatch) => {
         api
             .post(`${BASE_URL}/session`, {
-                'email': 'email@mail.com',
-                'name': 'name',
-                'surname': 'surname',
-                'password': '123123'
+                'email': email,
+                'name': name,
+                'surname': surname,
+                'password': password
             })
             .then(res => console.log(res))
             .catch(error => console.log(error));
@@ -26,7 +26,7 @@ export const signInGoogle = (user) => {
 export const signIn = (email, password) => {
     return (dispatch) => {
         api
-            .post(`${BASE_URL}/users`, {
+            .post(`${BASE_URL}/session`, {
                 'email': email,
                 'password': password
             })
@@ -41,6 +41,29 @@ export const signIn = (email, password) => {
             .catch(error => dispatch(signInError(error)));
     }
 }
+
+export const signUp = (email, name, surname, password) => {
+    console.log('sign up');
+    return (dispatch) => {
+        api
+            .post(`${BASE_URL}/users`, {
+                'email': email,
+                'name': name,
+                'surname': surname,
+                'password': password
+            })
+            .then(res => {
+                console.log(res);
+                if (res.data.status === false) {
+                    dispatch(signInError(res.data.message));
+                } else {
+                    dispatch(signInSuccess(res.data));
+                }
+            })
+            .catch(error => dispatch(signInError(error)));
+    }
+}
+
 
 export const signInSuccess = ({ id, email, name, surname, token }) => ({
     type: ACTION_TYPES.SIGN_IN_SUCCESS,
@@ -57,15 +80,5 @@ export const signInError = (error) => ({
     type: ACTION_TYPES.SIGN_IN_ERROR,
     payload: {
         error,
-    }
-});
-
-export const signUp = (email, password, name, surname) => ({
-    type: ACTION_TYPES.SIGN_UP,
-    payload: {
-        email,
-        password,
-        name,
-        surname,
     }
 });

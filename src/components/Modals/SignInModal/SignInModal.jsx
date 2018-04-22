@@ -52,6 +52,7 @@ class SignInModal extends React.Component {
         const {
             visible,
             error,
+            isLoading,
         } = this.props;
 
         let errorItem;
@@ -64,6 +65,7 @@ class SignInModal extends React.Component {
             <Modal
                 visible={this.props.visible}
                 title="Sign in"
+                confirmLoading={isLoading}
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
                 footer={[
@@ -72,7 +74,7 @@ class SignInModal extends React.Component {
                 ]}
             >
                 <Form onSubmit={this.handleSubmit} className="login-form">
-                    <FormItem>
+                    <FormItem hasFeedback>
                         {getFieldDecorator('email', {
                             rules: [{
                                 type: 'email', message: 'The input is not valid E-mail!',
@@ -83,7 +85,7 @@ class SignInModal extends React.Component {
                             <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} type="email" placeholder="Email" />
                         )}
                     </FormItem>
-                    <FormItem>
+                    <FormItem hasFeedback>
                         {getFieldDecorator('password', {
                             rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
@@ -91,7 +93,7 @@ class SignInModal extends React.Component {
                         )}
                     </FormItem>
                     {errorItem}
-                    <FormItem>
+                    <FormItem hasFeedback>
                         <h4>Sign in with</h4>
                         <Icon type="google" style={{ fontSize: 20, color: '#d34836' }}>
                             <GoogleLogin
