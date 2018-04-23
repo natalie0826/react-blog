@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Icon, Divider, Button, Carousel, Tag, Radio, Input } from 'antd';
 
 import './MainPage.css';
+import { PostVerticalLittle } from '../PostsPreview/PostVerticalLittle/PostVerticalLittle';
+import { PostVertical } from '../PostsPreview/PostVertical/PostVertical';
+import { PostHorizontal } from '../PostsPreview/PostHorizontal/PostHorizontal';
+import { CategoryTitle } from '../CategoryTitle/CategoryTitle';
 
 const RadioGroup = Radio.Group;
 export default class MainPage extends React.Component {
@@ -33,63 +37,11 @@ export default class MainPage extends React.Component {
             <Col xs={24} sm={24} md={24} lg={16} xl={16}>
                 <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                     <Col xs={24} sm={24} md={16} lg={16} xl={16}>
-                        <Link to="/post/1" style={{ textDecoration: 'none' }}>
-                            <div className="card">
-                                <div className="card__image">
-                                    <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-                                </div>
-                                <div className="card__description">
-                                    <div className="info">
-                                        {/* <span class="line _long"></span>
-                                <span class="line _short"></span> */}
-                                        <h1 className="info__title">Some more posts</h1>
-                                        <div className="info__subtitle">
-                                            <span>Pina Chaudhary</span>
-                                            <span> - </span>
-                                            <span className="info__subtitle--light">15 jul 2018</span>
-                                        </div>
-                                        <hr className="info__divider" />
-                                        <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
+                        <PostVertical />
                     </Col>
                     <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                        <div className="card card--first">
-                            <div className="card__image">
-                                <img src="https://images.unsplash.com/photo-1485988412941-77a35537dae4?ixlib=rb-0.3.5&s=177fa5618e070b6d13cf5debd2034426&auto=format&fit=crop&w=772&q=80" alt="" />
-                            </div>
-                            <div className="card__description card__description--little">
-                                <div className="info">
-                                    {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                    <h1 className="info__title info__title--little">Some more posts</h1>
-                                    <div className="info__subtitle info__subtitle--little">
-                                        <span>Pina Chaudhary</span>
-                                        <span> - </span>
-                                        <span className="info__subtitle--light">15 jul 2018</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <div className="card__image">
-                                <img src="https://images.unsplash.com/photo-1522199696220-f42195d8b7fb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=0942b0905adcc3cf9f7b7b4f78bc1ddf&auto=format&fit=crop&w=1052&q=80" alt="" />
-                            </div>
-                            <div className="card__description card__description--little">
-                                <div className="info">
-                                    {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                    <h1 className="info__title info__title--little">Some more posts</h1>
-                                    <div className="info__subtitle info__subtitle--little">
-                                        <span>Pina Chaudhary</span>
-                                        <span> - </span>
-                                        <span className="info__subtitle--light">15 jul 2018</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <PostVerticalLittle />
+                        <PostVerticalLittle />
                     </Col>
                 </Row>
             </Col>
@@ -148,126 +100,31 @@ export default class MainPage extends React.Component {
             </Col>
         </Row>
 
-
-
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24} sm={24} md={24} lg={16} xl={16}>
             {/* Programming */}
                 <div className="category-block">
-                    <p className="recent-posts__divider">
-                        <span className="recent-posts__title" style={{ 'backgroundColor': '#673AB7', 'padding': '0 5px', 'color': '#ffffff' }}>Programming</span>
-                        <span className="recent-posts__divider" style={{ 'borderColor': '#673AB7' }}></span>
-                    </p>
-
-                    <div className="post-horizontal-container">
-                        <div className="post-horizontal-image" style={{ 'backgroundImage': 'url("https://images.unsplash.com/photo-1484544808355-8ec84e534d75?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=fc1407c2a550b0ebf3def8b81fa7b4a2&auto=format&fit=crop&w=766&q=80")' }} />
-                        <div className="post-horizontal">
-                            <h1 className="post-horizontal-title">Everything You Need to Know About Painting Your House, Except for How to Do It</h1>
-                            <div className="info__subtitle">
-                                <span>Pina Chaudhary</span>
-                                <span> - </span>
-                                <span className="info__subtitle--light">15 jul 2018</span>
-                            </div>
-                            <hr className="info__divider" />
-                            <p className="info__text info__text-no-margin">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                            <Divider />
-                            <div className="info__footer info__footer-margin">
-                                <span className="info__comments">
-                                    <Icon type="message" />5 comments
-                                </span>
-                                <span className="info__time-read">
-                                    <Icon type="dashboard" />3 minutes read
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="post-horizontal-container">
-                        <div className="post-horizontal-image" style={{ 'backgroundImage': 'url("https://images.unsplash.com/photo-1508830524289-0adcbe822b40?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=377e356cce015c363d123504857f8137&auto=format&fit=crop&w=711&q=80")' }} />
-                        <div className="post-horizontal">
-                            <h1 className="post-horizontal-title">Everything You Need to Know About Painting Your House, Except for How to Do It</h1>
-                            <div className="info__subtitle">
-                                <span>Pina Chaudhary</span>
-                                <span> - </span>
-                                <span className="info__subtitle--light">15 jul 2018</span>
-                            </div>
-                            <hr className="info__divider" />
-                            <p className="info__text info__text-no-margin">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                            <Divider />
-                            <div className="info__footer info__footer-margin">
-                                <span className="info__comments">
-                                    <Icon type="message" />5 comments
-                                </span>
-                                <span className="info__time-read">
-                                    <Icon type="dashboard" />3 minutes read
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    <CategoryTitle title="Programming" />
+                    <PostHorizontal />
+                    <PostHorizontal />
                 </div>
 
                 {/* WEB SITE DEV */}
                 <div className="category-block">
-                    <p className="recent-posts__divider">
-                        <span className="recent-posts__title" style={{ 'backgroundColor': '#673AB7', 'padding': '0 5px', 'color': '#ffffff' }}>web site dev</span>
-                        <span className="recent-posts__divider" style={{ 'borderColor': '#673AB7' }}></span>
-                    </p>
+                    <CategoryTitle title="WEB SITE DEV" />
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <Link to="/post/1" style={{ textDecoration: 'none' }}>
-                                <div className="card">
-                                    <div className="card__image">
-                                        <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-                                    </div>
-                                    <div className="card__description">
-                                        <div className="info">
-                                            {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                            <h1 className="info__title">Some more posts</h1>
-                                            <div className="info__subtitle">
-                                                <span>Pina Chaudhary</span>
-                                                <span> - </span>
-                                                <span className="info__subtitle--light">15 jul 2018</span>
-                                            </div>
-                                            <hr className="info__divider" />
-                                            <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                            <PostVertical />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-                            <Link to="/post/1" style={{ textDecoration: 'none' }}>
-                                <div className="card">
-                                    <div className="card__image">
-                                        <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-                                    </div>
-                                    <div className="card__description">
-                                        <div className="info">
-                                            {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                            <h1 className="info__title">Some more posts</h1>
-                                            <div className="info__subtitle">
-                                                <span>Pina Chaudhary</span>
-                                                <span> - </span>
-                                                <span className="info__subtitle--light">15 jul 2018</span>
-                                            </div>
-                                            <hr className="info__divider" />
-                                            <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                            <PostVertical />   
                         </Col>
                     </Row>
                 </div>
 
                 {/* GAME SITE DEV */}
                 <div className="category-block">
-                    <p className="recent-posts__divider">
-                        <span className="recent-posts__title" style={{ 'backgroundColor': '#673AB7', 'padding': '0 5px', 'color': '#ffffff' }}>game site dev</span>
-                        <span className="recent-posts__divider" style={{ 'borderColor': '#673AB7' }}></span>
-                    </p>
+                    <CategoryTitle title="GAME SITE DEV" />
                     <Carousel autoplay>
                         <div><h3>1</h3></div>
                         <div><h3>2</h3></div>
@@ -278,27 +135,34 @@ export default class MainPage extends React.Component {
 
                 {/* CAREERS IN IT */}
                 <div className="category-block">
-                    <p className="recent-posts__divider">
-                        <span className="recent-posts__title" style={{ 'backgroundColor': '#673AB7', 'padding': '0 5px', 'color': '#ffffff' }}>careers in it</span>
-                        <span className="recent-posts__divider" style={{ 'borderColor': '#673AB7' }}></span>
-                    </p>
+                    <CategoryTitle title="Careers in it" />
+                    <PostHorizontal />
+                    <PostHorizontal />
                 </div>
 
                 {/* INTERFACES */}
                 <div className="category-block">
-                    <p className="recent-posts__divider">
-                        <span className="recent-posts__title" style={{ 'backgroundColor': '#673AB7', 'padding': '0 5px', 'color': '#ffffff' }}>careers in it</span>
-                        <span className="recent-posts__divider" style={{ 'borderColor': '#673AB7' }}></span>
-                    </p>
+                    <CategoryTitle title="interfaces" />
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-                        text
+                            <PostVerticalLittle />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-                        text
+                            <PostVerticalLittle />
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={8} xl={8}>
-                        text
+                            <PostVerticalLittle />
+                        </Col>
+                    </Row>
+                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+                            <PostVerticalLittle />
+                        </Col>
+                        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+                            <PostVerticalLittle />
+                        </Col>
+                        <Col xs={24} sm={24} md={24} lg={8} xl={8}>
+                            <PostVerticalLittle />
                         </Col>
                     </Row>
                 </div>
