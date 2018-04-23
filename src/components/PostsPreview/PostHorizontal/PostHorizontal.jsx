@@ -2,6 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Row, Col, Icon, Divider, Button } from 'antd';
+// TODO
+// add min-height + overflow: hidden + border-radius in parent container
+// common folder
+// PostCard.jsx (props: vertical - default + horizontal: true, text send/don't)
+// PostHeader.jsx  (title, author, date)
+// PostText.jsx (divider + text)
+// PostMeta.jsx (divider long, comment, minutes to read)
+
+// PostCardSlide
 
 export const PostHorizontal = () => {
     PostHorizontal.propTypes = {

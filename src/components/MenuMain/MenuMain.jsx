@@ -16,8 +16,9 @@ export default class MenuMain extends React.Component {
     static propTypes = {
         isAuth: PropTypes.bool.isRequired,
     };
-
+    
     render() {
+        console.log('path', this.props.location);
         return (
             <Header className="menu-main">
                 <div className="menu-main__logo">
