@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GoogleLogin from 'react-google-login';
-import { Modal, Button, Form, Icon, Input, Checkbox } from 'antd';
+import { Modal, Button, Form, Icon, Input } from 'antd';
 
 import './SignInModal.css';
 
@@ -9,7 +8,6 @@ const FormItem = Form.Item;
 
 class SignInModal extends React.Component {
     static propTypes = {
-        // signInGoogle: PropTypes.func.isRequired,
         visible: PropTypes.bool.isRequired,
         close: PropTypes.func.isRequired,
         open: PropTypes.func.isRequired,
@@ -17,22 +15,9 @@ class SignInModal extends React.Component {
         error: PropTypes.string.isRequired,
     };
 
-    responseGoogle = (res) => {
-        const postData = {
-            name: res.w3.ofa,
-            surname: res.w3.wea,
-            email: res.w3.U3,
-            token: res.Zi.access_token,
-            avatar: res.w3.Paa
-        };
-        this.props.signInGoogle();
-    };
-
     handleOk = () => {
-        console.log('handle OK');
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
                 this.props.signIn(values.email, values.password);
             }
         });
@@ -93,17 +78,6 @@ class SignInModal extends React.Component {
                         )}
                     </FormItem>
                     {errorItem}
-                    <FormItem hasFeedback>
-                        <h4>Sign in with</h4>
-                        <Icon type="google" style={{ fontSize: 20, color: '#d34836' }}>
-                            <GoogleLogin
-                                className="button google"
-                                clientId="672658121417-enp7uld7q92vrdlms2keir3jn8mtpsit.apps.googleusercontent.com"
-                                onSuccess={this.responseGoogle}
-                                onFailure={this.responseGoogle}
-                            />
-                        </Icon>
-                    </FormItem>
                 </Form>
             </Modal>
         );

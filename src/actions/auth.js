@@ -31,7 +31,6 @@ export const signIn = (email, password) => {
                 'password': password
             })
             .then(res => {
-                console.log(res);
                 if (res.data.status === false) {
                     dispatch(signInError(res.data.message));
                 } else {
@@ -43,7 +42,6 @@ export const signIn = (email, password) => {
 }
 
 export const signUp = (email, name, surname, password) => {
-    console.log('sign up');
     return (dispatch) => {
         api
             .post(`${BASE_URL}/users`, {
@@ -53,7 +51,6 @@ export const signUp = (email, name, surname, password) => {
                 'password': password
             })
             .then(res => {
-                console.log(res);
                 if (res.data.status === false) {
                     dispatch(signInError(res.data.message));
                 } else {
@@ -65,13 +62,14 @@ export const signUp = (email, name, surname, password) => {
 }
 
 
-export const signInSuccess = ({ id, email, name, surname, token }) => ({
+export const signInSuccess = ({ user, token }) => ({
     type: ACTION_TYPES.SIGN_IN_SUCCESS,
     payload: {
-        id,
-        email,
-        name,
-        surname,
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        surname: user.surname,
+        avatarUrl: user.avatarUrl,
         token,
     }
 });

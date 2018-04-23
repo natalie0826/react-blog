@@ -18,13 +18,14 @@ export default (state = initialState, action) => {
             return state.merge({
                 'isAuth': true,
                 'user': {
+                    'id': action.payload.id,
                     'email': action.payload.email,
                     'name': action.payload.name,
                     'surname': action.payload.surname,
+                    'avatarUrl': action.payload.avatarUrl,
                 }
             });
         case ACTION_TYPES.SIGN_IN_ERROR:
-            console.log('sign in error');
             return state.merge({
                 'isAuth': false,
                 'error': action.payload.error,

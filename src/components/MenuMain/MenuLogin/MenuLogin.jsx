@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Button } from 'antd';
 
 import RegisterModal from '../../Modals/RegisterModal/RegisterModal';
 import SignInModal from '../../Modals/SignInModal/SignInModal';
@@ -37,8 +35,6 @@ export default class MenuLogin extends React.Component {
             isAuth,
             error
         } = this.props;
-
-        console.log('visible', modalMode, 'type', modalType);
 
         return (
             <div className="menu-login">

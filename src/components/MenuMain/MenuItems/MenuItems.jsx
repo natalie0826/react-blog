@@ -36,7 +36,7 @@ export const MenuItems = () => {
                 </ItemGroup>
                 <ItemGroup key="1.2" title="Other" className="submenu-item">
                     <Item key="1.2.1">
-                        <Link to="/feed" className="menu-main__links menu-main__links--dropdown">
+                        <Link to="/feed" className="menu-main__links menu-main__links--light">
                             Latest
                         </Link>
                     </Item>

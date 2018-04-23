@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
     closeModal: () => dispatch(closeModal()),
     signIn: (email, password) => dispatch(signIn(email, password)),
     signUp: (email, password, name, surname) => dispatch(signUp(email, password, name, surname)),
+    signInGoogle: () => dispatch(signInGoogle),
 });
 
 export const SignInUp = connect(

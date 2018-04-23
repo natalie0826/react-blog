@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 
 import { MenuItems } from './MenuItems/MenuItems';
 import { MenuSearch } from './MenuSearch/MenuSearch';
-import { MenuUser } from './MenuUser/MenuUser';
+import { MenuUserContainer } from '../../containers/MenuUserContainer';
 import { SignInUp } from '../../containers/SignInUp';
 
 import './MenuMain.css';
@@ -37,7 +37,7 @@ export default class MenuMain extends React.Component {
                 <div className="menu-main__left">
                     <MenuSearch />
                     <div className="menu-main__divider"></div>
-                    {this.props.isAuth ? <MenuUser /> : <SignInUp />}
+                    {this.props.isAuth ? <MenuUserContainer /> : <SignInUp />}
                 </div>
             </Header>
         );

@@ -1,8 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Menu, Dropdown, Avatar, Icon } from 'antd';
 
-export const MenuUser = () => {
+export const MenuUser = (props) => {
+    MenuUser.propTypes = {
+        name: PropTypes.string.isRequired,
+        surname: PropTypes.string.isRequired,
+        avatarUrl: PropTypes.string.isRequired,
+    };
+
     const { Item, Divider } = Menu;
 
     const menu = (
@@ -30,8 +37,8 @@ export const MenuUser = () => {
         <Dropdown overlay={menu}>
             <span>
                 <Link to="/profile">
-                    <Avatar className="menu-main__left-items" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(4).jpg"></Avatar>
-                    <span className="menu-main__left-items--username">Bobby Casana</span>
+                    <Avatar className="menu-main__left-items" src={props.avatarUrl}></Avatar>
+                    <span className="menu-main__left-items--username">{props.name} {props.surname}</span>
                 </Link>
             </span>
         </Dropdown>
