@@ -4,6 +4,7 @@ import User from '../records/user';
 const initialState = new User({
     isAuth: false,
     user: {},
+    profile: false,
     error: ''
 });
 
@@ -30,6 +31,8 @@ export default (state = initialState, action) => {
                 'isAuth': false,
                 'error': action.payload.error,
             });
+        case 'PROFILE':
+            return state.set('profile', !state.get('profile'));
         default:
             return state;
     }

@@ -6,13 +6,11 @@
   }
   .violet-img {
     margin: 70px auto;
-    height: 150px;
-    width: 150px;
-  }
-  .violet-img img {
     border-radius: 50%;
     height: 150px;
     width: 150px;
+    background-size: cover;
+    background-position: center center;
   }
 
   .info-profile {
@@ -60,5 +58,15 @@
 
 .social-network-profile > button {
     margin: 5px 5px 20px 5px;
+}
+
+.post-horizontal-image {
+    position: relative;
+}
+
+.manage-post {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 

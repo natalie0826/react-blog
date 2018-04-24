@@ -1,0 +1,31 @@
+.info-about {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 100px;
+}
+
+.info-about-page {
+    display: flex;
+    flex-direction: column;
+  }
+  .info-about-image-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .info-about-image-page img {
+    width: 60%;
+    height: auto;
+    border-radius: 4px;
+  }
+  .info-about h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .info-about p {
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2em;
+  }

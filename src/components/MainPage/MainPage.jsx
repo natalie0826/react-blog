@@ -125,11 +125,58 @@ export default class MainPage extends React.Component {
                 {/* GAME SITE DEV */}
                 <div className="category-block">
                     <CategoryTitle title="GAME SITE DEV" />
-                    <Carousel autoplay>
-                        <div><h3>1</h3></div>
-                        <div><h3>2</h3></div>
-                        <div><h3>3</h3></div>
-                        <div><h3>4</h3></div>
+                    <Carousel autoplay style={{'height': '300px'}}>
+                    <div className="post-img">
+                                <div className="post-img__wrapper">
+                                    <div className="post-img__overlay"></div>
+                                    <div className="image-slider" >
+                                    <img src="https://images.unsplash.com/photo-1517696073804-9ce92f44f35d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2b44cd9f577bca7b27a459613e2d179d&auto=format&fit=crop&w=1351&q=80" alt=""/>
+                                                                        </div>
+                                    <div className="post-img__text post-img__text--slider">
+                                        <p className="post-img__text--title">Chief Operating Officer</p>
+                                        <p className="post-img__text--date">15 JUL 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div className="post-img">
+                                <div className="post-img__wrapper">
+                                    <div className="post-img__overlay"></div>
+                                    <div className="image-slider">
+                                        <img src="https://images.unsplash.com/photo-1516741247836-f66dfdfd1b22?ixlib=rb-0.3.5&s=7ae18737a6e556097cb3f191fd5daf5e&auto=format&fit=crop&w=599&q=80" alt="Headshot of Thomas Jefferson" />
+                                    </div>
+                                    <div className="post-img__text post-img__text--slider">
+                                        <p className="post-img__text--title">Chief Operating Officer</p>
+                                        <p className="post-img__text--date">15 JUL 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="post-img">
+                                <div className="post-img__wrapper">
+                                    <div className="post-img__overlay"></div>
+                                    <div className="image-slider">
+                                        <img src="https://images.unsplash.com/photo-1508240155128-3b7b40767aa1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=765113db149d05d2a9b69bdca93ef10f&auto=format&fit=crop&w=732&q=80" alt="Headshot of Thomas Jefferson" />
+                                    </div>
+                                    <div className="post-img__text post-img__text--slider">
+                                        <p className="post-img__text--title">Chief Operating Officer</p>
+                                        <p className="post-img__text--date">15 JUL 2018</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="post-img">
+                                <div className="post-img__wrapper">
+                                    <div className="post-img__overlay"></div>
+                                    <div className="image-slider">
+                                        <img src="https://images.unsplash.com/photo-1475506631979-72412c606f4d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a1a50de939164e2523f33bfae3041b30&auto=format&fit=crop&w=750&q=80" />
+                                    </div>
+                                    <div className="post-img__text post-img__text--slider">
+                                        <p className="post-img__text--title">Chief Operating Officer</p>
+                                        <p className="post-img__text--date">15 JUL 2018</p>
+                                    </div>
+                                </div>
+                            </div>
                     </Carousel>
                 </div>
 

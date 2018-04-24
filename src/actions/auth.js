@@ -80,3 +80,7 @@ export const signInError = (error) => ({
         error,
     }
 });
+
+export const beInProfile = () => ({
+    type: 'PROFILE',
+})
