@@ -1,0 +1,55 @@
+.users {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.user-container {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 20px 15px;
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 4px;
+}
+
+.user-container:hover {
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease-in;
+}
+
+.user-info {
+    flex: 3;
+}
+
+.user-posts {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    flex: 6;
+}
+
+.user-post + .user-post {
+    margin-left: 20px;
+}
+
+.user-profession {
+    font-weight: 400;
+    font-size: 1em;
+    color: #673ab7;
+}
+
+.user-date-start,
+.user-followers {
+    font-size: .9em;
+    color: #636363;
+}
+
+.users-sort {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.sort + .sort {
+    margin-left: 20px;
+}
