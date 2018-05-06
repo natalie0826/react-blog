@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Form, Select, InputNumber, Switch, Radio, Button, Upload, Icon, Input
+    Form, Select, InputNumber, Switch, Radio, Button, Upload, Icon, Input, notification 
   } from 'antd';
   const FormItem = Form.Item;
   const Option = Select.Option;
@@ -35,13 +35,22 @@ const { TextArea } = Input;
   }
 
   
+  
   class PostCreate extends React.Component {
+    openNotificationWithIcon = (type) => {
+        notification[type]({
+          message: 'Post Success',
+          description: 'New post has successfully been created.',
+        });
+      };
+
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
         if (!err) {
+            this.openNotification('success');
           console.log('Received values of form: ', values);
-        }
+        } 
       });
     }
     normFile = (e) => {
@@ -66,7 +75,7 @@ const { TextArea } = Input;
             label="Please enter a title"
             hasFeedback
           >
-            {getFieldDecorator('input', {
+            {getFieldDecorator('inputsecond', {
               rules: [
                 { required: true, message: 'Please enter a title' },
               ],
@@ -80,7 +89,7 @@ const { TextArea } = Input;
             label="Please enter a subtitle"
             hasFeedback
           >
-            {getFieldDecorator('input', {
+            {getFieldDecorator('inputnew', {
               rules: [
                 { required: true, message: 'Please enter a subtitle' },
               ],
@@ -134,13 +143,9 @@ const { TextArea } = Input;
             {...formItemLayout}
             label="Please input post text"
           >
-            {getFieldDecorator('input', {
-              rules: [
-                { required: true, message: 'Please input post text!', type: 'array' },
-              ],
-            })(
+            
                 <TextArea placeholder="Autosize height with minimum and maximum number of lines" autosize={{ minRows: 12, maxRows: 30 }} />
-            )}
+            
           </FormItem>
 
           <FormItem

@@ -1,0 +1,34 @@
+.post-card__title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.post-card__title--white {
+    color: #ffffff;
+}
+
+.info__subtitle {
+    text-transform: uppercase;
+    color: #9e9e9e;
+}
+
+.info__subtitle--light {
+    color: #cccccc;
+}
+
+.info__subtitle--little {
+    padding-bottom: 0.4em;
+}
+
+.post-img__text {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    margin: 0 1em;
+}
+
+.post-img__text--slider {
+    top: 40px;
+}

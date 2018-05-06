@@ -1,0 +1,17 @@
+.info__text {
+    font-size: 1em;
+    line-height: 1.6em;
+    color: #8d8d8d;
+}
+
+.info__text-no-margin {
+    margin: 0;
+}
+
+.info__divider {
+    height: 1px;
+    width: 10%;
+    background-color: #cccccc;
+    margin: .8em 0;
+    border: none;
+}

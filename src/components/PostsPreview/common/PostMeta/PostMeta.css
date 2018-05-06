@@ -1,0 +1,25 @@
+.info__footer {
+    margin: 10px 0;
+    text-transform: uppercase;
+    color: #cccccc;
+}
+
+.info__footer-margin {
+    margin: 20px 0 0 0;
+}
+
+.info__comments>.anticon,
+.info__comments>.anticon-message,
+.info__time-read>.anticon,
+.info__time-read>.anticon-message {
+    margin-right: 5px;
+}
+
+.info__time-read {
+    margin-left: 20px;
+}
+
+.ant-divider,
+.ant-divider-horizontal {
+    margin: 1.5em 0 !important;
+}

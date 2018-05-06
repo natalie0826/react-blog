@@ -56,13 +56,17 @@
 .post-author {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    align-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .author-avatar {
+    /* min-width: 60px;
     width: 60px;
-    height: 60px;
+    height: 60px; */
+    min-width: 80px;
+    width: 80px;
+    height: 80px;
     background-position: center center;
     background-size: cover;
     border-radius: 50%;
@@ -72,10 +76,13 @@
 
 .author-description {
     margin: 0 1.6em;
+    font-family: "Montserrat", sans-serif;
 }
 
 .description-name {
+    display: inline-block;
     font-size: 1.2em;
+    font-weight: 600;
     color: #222222;
 }
 
