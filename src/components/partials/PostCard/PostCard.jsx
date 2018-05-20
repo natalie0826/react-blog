@@ -13,6 +13,9 @@ import './PostCard.css';
 export const PostCard = (props) => {
     PostCard.propTypes = {
         isHorizontal: PropTypes.bool,
+        isShort: PropTypes.bool,
+        id: PropTypes.number.isRequired,
+        author: PropTypes.string,
         text: PropTypes.string,
         image: PropTypes.string,
         comments: PropTypes.number,
@@ -35,8 +38,12 @@ export const PostCard = (props) => {
                   </div>
                 }
                 <div className="post-card">
-                    <PostHeader title={props.title} date={props.date} author={props.author} />
-                    {props.text && <PostText text={props.text} />}
+                    <PostHeader
+                      title={props.title}
+                      date={props.date}
+                      author={props.author}
+                    />
+                    {!props.isShort && <PostText text={props.text} />}
                     {props.showMeta && <PostMeta comments={props.comments} minutes={props.minutes} />}
                 </div>
             </div>
@@ -51,5 +58,6 @@ PostCard.defaultProps = {
     comments: null,
     minutes: null,
     height: '250',
-    showMeta: false
+    showMeta: false,
+    author: "Ivanna"
 };

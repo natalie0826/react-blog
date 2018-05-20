@@ -2,14 +2,20 @@ import { api } from '../tools/ajax-tool';
 import { BASE_URL } from '../constants/urls';
 import { ACTION_TYPES } from '../constants/action-types';
 
-export const fetchPosts = (categoryId, count = 24, page = 0) => (dispatch) => {
+export const fetchPosts = (categoryId = -1, count = 24, page = 0) => (dispatch) => {
   dispatch(fetchPostsStatus(categoryId));
   const offset = count * page;
+  let url;
+  if (categoryId === -1) {
+    url = `${BASE_URL}/posts?page=${page}&limit=${count}&offset=${offset}`
+  } else {
+    url = `${BASE_URL}/categories/${categoryId}/posts?page=${page}&limit=${count}&offset=${offset}`
+  }
   api
-    .get(`${BASE_URL}/categories/${categoryId}/posts?page=${page}&limit=${count}&offset=${offset}`)
+    .get(url)
     .then(res => {
       if (res.data.status === false) {
-        console.log('errror', res.data.message);
+        console.log('error', res.data.message);
         dispatch(fetchPostsFailure(res.data.message, categoryId));
       } else {
         console.log('success');

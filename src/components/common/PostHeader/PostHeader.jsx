@@ -7,8 +7,8 @@ import './PostHeader.css';
 export const PostHeader = (props) => {
     PostHeader.propTypes = {
         title: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
+        author: PropTypes.string,
+        date: PropTypes.string,
         overImage: PropTypes.bool
     };
 
@@ -20,10 +20,14 @@ export const PostHeader = (props) => {
         'post-card__title--white': props.overImage
     });
 
+    const infoClasses = classNames('info__subtitle', {
+        'info-subtitle--white': props.overImage
+    });
+
     return (
         <div className={postHeaderClasses}>
             <h1 className={postTitleClasses}>{props.title}</h1>
-            <div className="info__subtitle">
+            <div className={infoClasses}>
                 {props.author && <span>{props.author} - </span>}
                 <span className="info__subtitle--light">{props.date}</span>
             </div>

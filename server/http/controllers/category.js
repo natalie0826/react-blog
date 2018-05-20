@@ -47,7 +47,7 @@ router.get('/:categoryId/posts', (req, res) => {
       attributes: Object.keys(models.post.attributes).concat([
           [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.postId = post.id)'), 'comments']
       ]),
-      order: [ ['dateCreate', 'DESC'] ],
+      order: [ ['dateCreate', 'ASC'] ],
       limit: Number(req.query.limit) || 5000,
       offset: Number(req.query.offset) || 0
   })

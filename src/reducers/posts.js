@@ -26,10 +26,10 @@ const getPosts = (posts) => {
 export default (state = initialState, action) => {
     switch(action.type) {
       case ACTION_TYPES.FETCH_POSTS:
-        return state.setIn([action.payload.categoryId, 'isFetching'], true);
+        return state.setIn([action.payload.categoryId, 'isFetching'], 'process');
       case ACTION_TYPES.FETCH_POSTS_SUCCESS:
         return state
-                .setIn([action.payload.categoryId, 'isFetching'], false)
+                .setIn([action.payload.categoryId, 'isFetching'], 'finish')
                 .setIn([action.payload.categoryId, 'posts'], getPosts(action.payload.posts))
                 .setIn([action.payload.categoryId, 'count'], action.payload.count);
       case ACTION_TYPES.FETCH_POSTS_FAILURE:

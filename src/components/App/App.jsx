@@ -25,12 +25,13 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-      this.props.loadCategories();
+    this.props.fetchPosts();
+    this.props.loadCategories();
   }
 
   componentDidUpdate() {
     if(this.props.categories.size > 1) {
-      this.props.categories.map((category) => this.props.fetchPosts(category.id));
+      this.props.categories.map(category => this.props.fetchPosts(category.get('id')));
     }
   }
 
