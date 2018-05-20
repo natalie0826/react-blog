@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { signIn, signUp, signInGoogle } from '../actions/auth';
 import { openModal, closeModal } from '../actions/modal';
-import MenuLogin from '../components/MenuMain/MenuLogin/MenuLogin';
+import MenuLogin from '../components/partials/MenuMain/MenuLogin/MenuLogin';
 
 const mapStateToProps = state => ({
     modalMode: state.getIn(['modal', 'modalMode']),

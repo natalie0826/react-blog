@@ -37,6 +37,10 @@ module.exports = (sequelize, Sequelize) => {
                     msg: 'Excerpt is not valid. It should be less than 80 characters long.'
                 }
             }
+        },
+        imageUrl: {
+            type: Sequelize.CHAR(255),
+            allowNull: false
         }
     }, {
         /*paranoid: true,

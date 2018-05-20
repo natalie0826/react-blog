@@ -6,6 +6,8 @@ const Post = Record({
     subtitle: null,
     text: null,
     excerpt: null,
+    imageUrl: null,
+    comments: null,
     tags: null,
     category: null,
     author: null,

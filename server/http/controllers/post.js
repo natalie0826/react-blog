@@ -112,7 +112,7 @@ router.get('/:id/comments', (req, res) => {
                     author: comment.dataValues.user.dataValues.name + ' ' + comment.dataValues.user.dataValues.surname
                 });
             });
-            
+
             res.send(modifiedComments);
             return;
         })
@@ -134,7 +134,7 @@ router.put('/:id', (req, res) => {
                     baseFunctions.addPostTags(addedTags, postId);
                 });
             });
-            
+
             const answer = baseFunctions.getAnswer(true, 200, 'Post has been updated successfully');
             res.send(answer);
             return;

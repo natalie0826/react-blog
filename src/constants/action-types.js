@@ -12,7 +12,12 @@ export const ACTION_TYPES = keyMirror({
     SIGN_UP: null,
 
     // posts
-    FETCH_POSTS_START: null,
+    FETCH_POSTS: null,
     FETCH_POSTS_SUCCESS: null,
-    FETCH_POSTS_ERROR: null,
+    FETCH_POSTS_FAILURE: null,
+
+    // categories
+    LOAD_CATEGORIES: null,
+    LOAD_CATEGORIES_SUCCESS: null,
+    LOAD_CATEGORIES_FAILURE: null,
 });

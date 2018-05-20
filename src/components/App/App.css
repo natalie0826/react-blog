@@ -1,0 +1,7 @@
+.ant-layout-sider-trigger {
+    position: absolute;
+    top: 0;
+    height: 64px;
+    background-color: #673ab7;
+    padding-top: 10px;
+}

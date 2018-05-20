@@ -1,0 +1,92 @@
+.user-profile-background {
+  width: calc(100% + 100px);
+  height: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin: -30px -50px;
+  background-image: url("https://images.unsplash.com/photo-1492546643178-96d64f3fd824?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c8b0ca61fa643ce14689caf7a5bd84d&auto=format&fit=crop&w=1351&q=80");
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, .5);
+  position: relative;
+  margin-bottom: 80px;
+}
+
+.user-profile-background > .avatar {
+  position: absolute;
+  top: calc(85% - 100px);
+  left: calc((100% - 200px) / 2);
+  border-radius: 20%;
+  height: 200px;
+  width: 200px;
+  background-size: cover;
+  background-position: center center;
+  border: 3px solid rgba(240, 240, 240, 0.85);
+  box-shadow: 0px 0px 0px 3px #b6a0de;
+}
+
+.user-profile-description {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.user-profile-info {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.user-profile-title {
+  font-size: 1.5em;
+  font-weight: bolder;
+  letter-spacing: .5px;
+  color: #4a4a4a;
+  font-family: "Montserrat", sans-serif;
+}
+
+.user-profile-title--capitalize {
+  text-transform: uppercase;
+}
+
+.user-profile-profession {
+  color: #7c7c7c;
+}
+
+.spacer {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.spacer-section {
+  margin: 0;
+  padding-right: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.spacer-section + .spacer-section {
+  border-left: 1px solid #cccccc;
+  padding-left: 18px;
+}
+
+.spacer-section > h4 {
+  margin-bottom: 0;
+  font-size: 1.3em;
+  color: #2e1954;
+}
+
+.user-profile-statistics {
+  margin: 15px 0;
+}
+
+.personal-info {
+  margin: 15px auto;
+  width: 70%;
+}
+
+.personal-info-description {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  line-height: 2em;
+  text-align: justify;
+}

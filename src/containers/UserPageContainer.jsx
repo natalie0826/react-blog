@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { beInProfile } from '../actions/auth';
 
-import UserPage from '../components/UserPage/UserPage';
+import UserPage from '../components/pages/UserPage/UserPage';
 
 const mapStateToProps = state => ({
     profile: state.getIn('auth', 'profile'),

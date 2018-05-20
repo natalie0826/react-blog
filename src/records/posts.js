@@ -1,6 +1,5 @@
-import { Record } from 'immutable';
+import { OrderedMap } from 'immutable';
 
-const Posts = Record({
-    isFetching: null,
-    posts: null,
-});
+const Posts = OrderedMap;
+
+export default Posts;
