@@ -9,7 +9,6 @@ import { MenuUserContainer } from '../../../containers/MenuUserContainer';
 import { SignInUp } from '../../../containers/SignInUp';
 
 import './MenuMain.css';
-import { MenuItemsContainer } from '../../../containers/MenuItemsContainer';
 
 const { Header } = Layout;
 
@@ -19,7 +18,6 @@ export default class MenuMain extends React.Component {
     };
 
     render() {
-        console.log('path', this.props.location);
         return (
             <Header className="menu-main">
                 <div className="menu-main__logo">
@@ -34,7 +32,6 @@ export default class MenuMain extends React.Component {
                     </Link>
                 </div>
 
-                {/* <MenuItemsContainer /> */}
                 <MenuItems categories={this.props.categories} />
 
                 <div className="menu-main__left">

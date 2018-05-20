@@ -20,4 +20,9 @@ export const ACTION_TYPES = keyMirror({
     LOAD_CATEGORIES: null,
     LOAD_CATEGORIES_SUCCESS: null,
     LOAD_CATEGORIES_FAILURE: null,
+
+    // tags
+    LOAD_TAGS: null,
+    LOAD_TAGS_SUCCESS: null,
+    LOAD_TAGS_FAILURE: null,
 });

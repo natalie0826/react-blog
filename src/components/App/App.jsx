@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Icon, Layout, Menu, Spin } from 'antd';
 
-import { Routes } from '../Routes/Routes';
 import ProfileMenu from '../partials/ProfileMenu/ProfileMenu';
+import { Routes } from '../Routes/Routes';
 import { MenuMainContainer } from '../../containers/MenuMainContainer';
 import { Footer } from '../partials/Footer/Footer';
 

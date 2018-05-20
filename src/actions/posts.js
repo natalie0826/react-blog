@@ -15,15 +15,12 @@ export const fetchPosts = (categoryId = -1, count = 24, page = 0) => (dispatch) 
     .get(url)
     .then(res => {
       if (res.data.status === false) {
-        console.log('error', res.data.message);
         dispatch(fetchPostsFailure(res.data.message, categoryId));
       } else {
-        console.log('success');
         dispatch(fetchPostsSuccess(res.data, categoryId));
       }
     })
     .catch(error => {
-      console.log('error error', error);
       dispatch(fetchPostsFailure(error, categoryId));
     });
 }

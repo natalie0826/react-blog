@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Row, Divider, Button, Tag, message  } from 'antd';
-import { Menu, Icon, Popconfirm } from 'antd';
-
-import { Layout, Breadcrumb } from 'antd';
+import { Col, Row, Divider, Button, Tag, message } from 'antd';
+import { Icon, Popconfirm } from 'antd';
 
 import './UserPage.css';
-const { Header, Content, Sider } = Layout;
-
-
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 export default class UserPage extends React.Component {
     constructor(props) {

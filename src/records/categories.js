@@ -1,7 +1,7 @@
 import { Record } from 'immutable';
 
 const Categories = Record({
-    isLoading: null,
+    loadStatus: null,
     categories: null,
     error: null
 });

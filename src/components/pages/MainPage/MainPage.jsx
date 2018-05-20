@@ -1,27 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { List } from 'immutable';
 import { Link } from 'react-router-dom';
 import { Row, Col, Divider, Button, Tag, Radio, Spin } from 'antd';
 
-import { socialNetworks } from '../../../constants/social-networks';
-
 import { CategoriesGenerator } from '../../partials/CategoriesGenerator/CategoriesGenerator';
 import { CategoryTitle } from '../../common/CategoryTitle/CategoryTitle';
-import { PostCard } from '../../partials/PostCard/PostCard';
-import { PostImage } from '../../common/PostImage/PostImage';
 import { PostHeader } from '../../common/PostHeader/PostHeader';
-import { PostOverlay } from '../../partials/PostOverlay/PostOverlay';
 import { HeaderPosts } from '../../partials/HeaderPosts/HeaderPosts';
 import { Icons } from '../../common/Icons/Icons';
+
+import { socialNetworks } from '../../../constants/social-networks';
 
 import './MainPage.css';
 
 const RadioGroup = Radio.Group;
 
 export default class MainPage extends React.Component {
+    static propTypes = {
+      loadTags: PropTypes.func.isRequired,
+      tags: PropTypes.instanceOf(List).isRequired,
+      tagsLoading: PropTypes.string.isRequired,
+    }
 
     state = {
       value: 1,
     }
+
+    componentDidMount() {
+      this.props.loadTags();
+    }
+
+
     onChange = (e) => {
       console.log('radio checked', e.target.value);
       this.setState({
@@ -30,24 +40,26 @@ export default class MainPage extends React.Component {
     }
 
     renderCategories = (categories, posts, isCategoriesLoading) => {
-      return categories.map((category, index) => {
-        return (
-          <CategoryTitle
-            key={categories.get('id')}
-            title={categories.getIn([index, 'name'])}
-            loading={isCategoriesLoading}
-          >
-            {(posts.size > 0 && posts.getIn([categories.getIn([index, 'id']), 'isFetching']) === 'finish')
-            ? <CategoriesGenerator
-                posts={posts.getIn([categories.getIn([index, 'id']), 'posts'])}
-                key={index}
-                index={index}
-              />
-            : <Spin />}
-          </CategoryTitle>
-        )
-      })
-    }
+      if (isCategoriesLoading !== 'finish') {
+        return <Spin />
+      } else {
+        categories.map(category =>
+            <CategoryTitle
+              key={category.get('id')}
+              title={category.get('name')}
+              loading={isCategoriesLoading}
+            >
+              {(posts.size > 0 && posts.getIn([category.getIn('id', 'isFetching')]) === 'finish')
+              ? <CategoriesGenerator
+                  posts={posts.getIn([category.get('id'), 'posts'])}
+                  key={category.get('id')}
+                  index={category.get('id')}
+                />
+              : <Spin />}
+            </CategoryTitle>
+          )
+        }
+      }
 
     render() {
       const radioStyle = {
@@ -59,8 +71,12 @@ export default class MainPage extends React.Component {
       const {
         isCategoriesLoading,
         categories,
-        posts
+        posts,
+        tagsLoading,
+        tags
       } = this.props;
+
+      console.log('tags', tags);
 
     return (
       <div>
@@ -85,7 +101,7 @@ export default class MainPage extends React.Component {
               <div className="sidebar-block">
                   <p className="recent-posts__divider">
                       <span className="recent-posts__title">TOP 5 posts</span>
-                      <span className="recent-posts__divider"></span>
+                      <span className="recent-posts__divider" />
                   </p>
                   <div className="top-posts">
                       <div className="top-one">
@@ -121,17 +137,9 @@ export default class MainPage extends React.Component {
                       <span className="recent-posts__divider"></span>
                   </p>
                   <div className="post-tags top-tags">
-                      <Tag color="#673ab7">#natasha</Tag>
-                      <Tag color="#673ab7">#frontend</Tag>
-                      <Tag color="#673ab7">#horosami</Tag>
-                      <Tag color="#673ab7">#flexbox</Tag>
-                      <Tag color="#673ab7">#html</Tag>
-                      <Tag color="#673ab7">#react</Tag>
-                      <Tag color="#673ab7">#body</Tag>
-                      <Tag color="#673ab7">#blog</Tag>
-                      <Tag color="#673ab7">#more</Tag>
-                      <Tag color="#673ab7">#programming</Tag>
-                      <Tag color="#673ab7">#css</Tag>
+                    {tagsLoading === 'finish'
+                    ? tags.sort((a, b) => b.get('count') - a.get('count')).slice(0, 10).map(tag => <Tag color="#673ab7">#{tag.get('name')}</Tag>)
+                    : <Spin />}
                   </div>
               </div>
 
