@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { List } from 'immutable';
 import {
     Form, Select, InputNumber, Switch, Radio, Button, Upload, Icon, Input, notification
   } from 'antd';
@@ -7,36 +9,18 @@ import {
   const RadioButton = Radio.Button;
   const RadioGroup = Radio.Group;
 
-const children = [];
 const { TextArea } = Input;
-
-  children.push(<Option key="programming">programming</Option>);
-  children.push(<Option key="html">html</Option>);
-  children.push(<Option key="18">layout</Option>);
-  children.push(<Option key="17">flexbox</Option>);
-  children.push(<Option key="16">css</Option>);
-  children.push(<Option key="15">gaming</Option>);
-  children.push(<Option key="2">game</Option>);
-  children.push(<Option key="3">developer</Option>);
-  children.push(<Option key="4">code</Option>);
-  children.push(<Option key="5">more</Option>);
-  children.push(<Option key="6">history</Option>);
-  children.push(<Option key="7">xml</Option>);
-  children.push(<Option key="8">keyboard</Option>);
-  children.push(<Option key="9">mouse</Option>);
-  children.push(<Option key="14">laptop</Option>);
-  children.push(<Option key="13">flex</Option>);
-  children.push(<Option key="12">float</Option>);
-  children.push(<Option key="11">technology</Option>);
-  children.push(<Option key="10">website</Option>);
 
   function handleChange(value) {
     console.log(`selected ${value}`);
   }
 
-
-
   class PostEditor extends React.Component {
+    static propTypes = {
+      tags: PropTypes.instanceOf(List).isRequired,
+      categories: PropTypes.instanceOf(List).isRequired
+    }
+
     openNotificationWithIcon = (type) => {
         notification[type]({
           message: 'Post Success',
@@ -50,6 +34,7 @@ const { TextArea } = Input;
         if (!err) {
             // this.openNotification('success');
           console.log('Received values of form: ', values);
+          this.props.createPost();
         }
       });
     }
@@ -60,12 +45,23 @@ const { TextArea } = Input;
       }
       return e && e.fileList;
     }
+
+    addValues = values => {
+      const children = [];
+      values.map(value =>
+        children.push(<Option key={value.get('id')}>{value.get('name')}</Option>)
+      );
+
+      return children;
+    }
+
     render() {
       const { getFieldDecorator } = this.props.form;
       const formItemLayout = {
         labelCol: { span: 6 },
         wrapperCol: { span: 14 },
       };
+
       return (
         <div>
           <h1 style={{ 'textAlign': 'center' }}>Create new post</h1>
@@ -107,11 +103,7 @@ const { TextArea } = Input;
                 ],
               })(
                 <Select placeholder="Please select your category">
-                  <Option value="programming">Programming</Option>
-                  <Option value="website">Website dev</Option>
-                  <Option value="game">Game dev</Option>
-                  <Option value="careers">Careers in IT</Option>
-                  <Option value="use">Interfaces</Option>
+                  {this.addValues(this.props.categories)}
                 </Select>
               )}
             </FormItem>
@@ -131,7 +123,7 @@ const { TextArea } = Input;
                     placeholder="Please tags for your post"
                     onChange={handleChange}
                   >
-                  {children}
+                  {this.addValues(this.props.tags)}
                 </Select>
               )}
             </FormItem>

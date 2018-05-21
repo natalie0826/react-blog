@@ -10,7 +10,7 @@ export const setUser = (user) => ({
 });
 
 export const signInGoogle = (email, name, surname, password) => {
-    return (dispatch) => {
+    return dispatch => {
         api
             .post(`${BASE_URL}/session`, {
                 'email': email,
