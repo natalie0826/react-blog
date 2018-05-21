@@ -13,8 +13,9 @@ export const Slider = (props) => {
   return (
     <Carousel autoplay style={{'height': '300px'}}>
       {props.posts.map(post =>
-        <div>
+        <div key={post.get('id')}>
           <PostOverlay
+            id={post.get('id')}
             image={post.get("imageUrl")}
             title={post.get("title")}
             author={post.get("author")}

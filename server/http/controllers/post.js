@@ -64,12 +64,13 @@ router.get('', (req, res) => {
 
 router.post('', (req, res) => {
     const post = req.body;
-    console.log('post', post);
     models.post.create(post)
         .then((insertedPost) => {
             baseFunctions.addTags(post.tags, (addedTags) => {
                 baseFunctions.addPostTags(addedTags, insertedPost.dataValues.id);
             });
+
+            console.log('post', insertedPost);
             res.send((insertedPost.dataValues.id).toString());
             return;
         })

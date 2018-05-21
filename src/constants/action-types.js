@@ -11,10 +11,14 @@ export const ACTION_TYPES = keyMirror({
     SIGN_IN_ERROR: null,
     SIGN_UP: null,
 
-    // posts
+    // posts-load
     FETCH_POSTS: null,
     FETCH_POSTS_SUCCESS: null,
     FETCH_POSTS_FAILURE: null,
+
+    // post-create
+    CREATE_POST_SUCCESS: null,
+    CREATE_POST_FAILURE: null,
 
     // categories
     LOAD_CATEGORIES: null,

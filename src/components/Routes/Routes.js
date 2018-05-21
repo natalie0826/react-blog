@@ -6,7 +6,7 @@ import ByCategory from '../pages/ByCategory/ByCategory';
 import PostView from '../pages/PostView/PostView';
 import { UserPageContainer } from '../../containers/UserPageContainer';
 import UserProfile from '../pages/UserProfile/UserProfile';
-import PostEditor from '../pages/PostEditor/PostEditor';
+import { PostEditorContainer } from '../../containers/PostEditorContainer';
 import { About } from '../pages/About/About';
 import { Users } from '../pages/Users/Users';
 import { NoMatch } from '../pages/NoMatch/NoMatch';
@@ -24,8 +24,8 @@ export const Routes = () => {
                     : <Redirect to='/' />
                 )}
             /> */}
-            <Route path="/create/post" component={PostEditor} />
-            <Route path="/post/:id/edit" render={PostEditor} />
+            <Route path="/create/post" component={PostEditorContainer} />
+            <Route path="/post/:id/edit" render={PostEditorContainer} />
             <Route path="/about" strict component={About} />
             <Route path="/users" strict component={Users} />
             <Route path="/user/:id" strict component={UserProfile} />

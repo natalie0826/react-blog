@@ -43,13 +43,13 @@ export default class MainPage extends React.Component {
       if (isCategoriesLoading !== 'finish') {
         return <Spin />
       } else {
-        categories.map(category =>
+        return categories.map(category =>
             <CategoryTitle
               key={category.get('id')}
               title={category.get('name')}
-              loading={isCategoriesLoading}
+              loadStatus={isCategoriesLoading}
             >
-              {(posts.size > 0 && posts.getIn([category.getIn('id', 'isFetching')]) === 'finish')
+              {(posts.size > 0 && posts.getIn([category.get('id'), 'isFetching']) === 'finish')
               ? <CategoriesGenerator
                   posts={posts.getIn([category.get('id'), 'posts'])}
                   key={category.get('id')}
