@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
-import { Link } from 'react-router-dom';
-import { Row, Col, Divider, Button, Tag, Radio, Spin } from 'antd';
+// import { Link } from 'react-router-dom';
+import { Row, Col, Button, Tag, Radio, Spin } from 'antd';
 
 import { CategoriesGenerator } from '../../partials/CategoriesGenerator/CategoriesGenerator';
 import { CategoryTitle } from '../../common/CategoryTitle/CategoryTitle';
@@ -18,9 +18,9 @@ const RadioGroup = Radio.Group;
 
 export default class MainPage extends React.Component {
     static propTypes = {
-      loadTags: PropTypes.func.isRequired,
-      tags: PropTypes.instanceOf(List).isRequired,
-      tagsLoading: PropTypes.string.isRequired,
+        loadTags: PropTypes.func.isRequired,
+        tags: PropTypes.instanceOf(List).isRequired,
+        tagsLoading: PropTypes.string,
     }
 
     state = {
@@ -75,8 +75,6 @@ export default class MainPage extends React.Component {
         tagsLoading,
         tags
       } = this.props;
-
-      console.log('tags', tags);
 
     return (
       <div>
@@ -134,11 +132,11 @@ export default class MainPage extends React.Component {
               <div className="sidebar-block">
                   <p className="recent-posts__divider">
                       <span className="recent-posts__title">top 10 tags</span>
-                      <span className="recent-posts__divider"></span>
+                      <span className="recent-posts__divider" />
                   </p>
                   <div className="post-tags top-tags">
                     {tagsLoading === 'finish'
-                    ? tags.sort((a, b) => b.get('count') - a.get('count')).slice(0, 10).map(tag => <Tag color="#673ab7">#{tag.get('name')}</Tag>)
+                    ? tags.sort((a, b) => b.get('count') - a.get('count')).slice(0, 10).map(tag => <Tag color="#673ab7" key={tag.get('id')}>#{tag.get('name')}</Tag>)
                     : <Spin />}
                   </div>
               </div>

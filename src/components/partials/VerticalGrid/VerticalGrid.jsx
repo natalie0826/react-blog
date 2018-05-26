@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 import { Row, Col } from 'antd';
 
 import { PostCard } from '../PostCard/PostCard';
 
 export const VerticalGrid = props => {
   VerticalGrid.propTypes={
-    posts: PropTypes.instanceOf(List).isRequired,
+    posts: PropTypes.array.isRequired,
     columns: PropTypes.number
   };
 
@@ -15,11 +14,12 @@ export const VerticalGrid = props => {
     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
       {props.posts.map(post => {
         return (
-          <Col xs={24} sm={24} md={24} lg={24/props.columns} xl={24/props.columns}>
+          <Col xs={24} sm={24} md={24} lg={24/props.columns} xl={24/props.columns} key={post.get('id')}>
             {props.columns === 2
               ?
               <PostCard
                 key={post.get('id')}
+                id={post.get('id')}
                 image={post.get('imageUrl')}
                 text={post.get('text')}
                 author={post.get('author')}
@@ -30,6 +30,7 @@ export const VerticalGrid = props => {
               <PostCard
                 key={post.get('id')}
                 height={150}
+                id={post.get('id')}
                 image={post.get('imageUrl')}
                 author={post.get('author')}
                 date={post.get('dateUpdate')}

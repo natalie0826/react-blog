@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const CategoryTitle = (props) => {
     CategoryTitle.propTypes = {
         title: PropTypes.string.isRequired,
-        loadStatus: PropTypes.bool.isRequired,
+        loadStatus: PropTypes.string.isRequired,
         children: PropTypes.element.isRequired
     };
 

@@ -2,7 +2,7 @@ import { api } from '../tools/ajax-tool';
 import { BASE_URL } from '../constants/urls';
 import { ACTION_TYPES } from '../constants/action-types';
 
-export const fetchPosts = (categoryId = -1, count = 24, page = 0) => (dispatch) => {
+export const fetchPosts = (categoryId = -1, count = 24, page = 0) => dispatch => {
     dispatch(fetchPostsStatus(categoryId));
     const offset = count * page;
     let url;
@@ -25,7 +25,7 @@ export const fetchPosts = (categoryId = -1, count = 24, page = 0) => (dispatch) 
       });
 }
 
-export const fetchPostsStatus = (categoryId) => ({
+export const fetchPostsStatus = categoryId => ({
     type: ACTION_TYPES.FETCH_POSTS,
     payload: {
         categoryId,
@@ -50,32 +50,17 @@ export const fetchPostsFailure = (error, categoryId) => ({
 });
 
 /* create new post */
-
-const post = {
-  title: "new",
-  subtitle: "subtitle",
-  categoryId: 1,
-  text: "text",
-  imageUrl: "placeholder",
-  userId: 1,
-  excerpt: "nvfdjsnhsd"
-}
-
-export const createPost = (post) => {
-    return (dispatch) => {
-        api
-            .post(`${BASE_URL}/posts`, post)
-            .then(res => {
-                if (res.data.status === false) {
-                    console.info('error POST CREATE', res.data);
-                    // dispatch(signInError(res.data.message));
-                } else {
-                    console.error('SUCESS POST CREATE', res.data);
-                    // dispatch(signInSuccess(res.data));
-                }
-            })
-            .catch(error => console.error('ERROR POST CREATE', error));
-    }
+export const createPost = post => dispatch => {
+    api
+        .post(`${BASE_URL}/posts`, JSON.stringify(post))
+        .then(res => {
+            if (res.data.status === false) {
+                dispatch(createPostFailure(res.data.message));
+            } else {
+                dispatch(createPostSuccess(res.data));
+            }
+        })
+        .catch(error => dispatch(createPostFailure(error)));
 }
 
 
@@ -88,6 +73,35 @@ export const createPostSuccess = post => ({
 
 export const createPostFailure = error => ({
     type: ACTION_TYPES.CREATE_POST_FAILURE,
+    payload: {
+        error,
+    }
+});
+
+/* get a post by id */
+export const getPost = id => dispatch => {
+    api
+        .get(`${BASE_URL}/posts/${id}`)
+        .then(res => {
+            if (res.data.status === false) {
+                dispatch(createPostFailure(res.data.message));
+            } else {
+                dispatch(createPostSuccess(res.data));
+            }
+        })
+        .catch(error => dispatch(createPostFailure(error)));
+}
+
+
+export const getPostSuccess = post => ({
+    type: ACTION_TYPES.GET_POST_SUCCESS,
+    payload: {
+        post,
+    },
+});
+
+export const getPostFailure = error => ({
+    type: ACTION_TYPES.GET_POST_FAILURE,
     payload: {
         error,
     }

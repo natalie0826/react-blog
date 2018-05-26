@@ -1,5 +1,5 @@
 const express = require('express');
-const app     = express();
+
 const router  = express.Router();
 
 const models        = require('../../models');
@@ -7,6 +7,7 @@ const baseFunctions = require('./base');
 
 const dbconfig   = require('../../config/database');
 const Sequelize  = require('sequelize');
+
 const sequelize  = new Sequelize(dbconfig.database, dbconfig.connection.user, dbconfig.connection.password, {
     dialect: 'mysql'
 });
@@ -22,18 +23,15 @@ router.get('', (req, res) => {
                 });
             });
             res.send(categoriesRes);
-            return;
         })
         .catch((error) => {
             const answer = baseFunctions.getAnswer(false, 500, error);
             res.send(answer);
-            return;
         })
 });
 
 router.get('/:categoryId/posts', (req, res) => {
   const categoryId = req.params.categoryId;
-  console.log('i am here', categoryId);
 
   models.post.findAndCountAll({
       where: { 'categoryId': categoryId },

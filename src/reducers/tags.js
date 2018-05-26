@@ -1,4 +1,3 @@
-import { List } from 'immutable';
 import uuidv4 from 'uuid/v4';
 
 import { ACTION_TYPES } from '../constants/action-types';

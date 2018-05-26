@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import { ACTION_TYPES } from '../constants/action-types';
 import Posts from '../records/posts';
 import Post from '../records/post';
@@ -7,18 +9,20 @@ const initialState = new Posts();
 const getPosts = (posts) => {
     return posts.map(post => {
         return new Post({
-          id: post.id,
-          title: post.title,
-          subtitle: post.subtitle,
-          text: post.text,
-          excerpt: post.excerpt,
-          tags: post.tags,
-          comments: post.comments,
-          category: post.category,
-          author: post.author,
-          imageUrl: post.imageUrl,
-          dateCreate: post.dateUpdate,
-          dateUpdate: post.dateCreate,
+            id: post.id,
+            title: post.title,
+            subtitle: post.subtitle,
+            text: post.text,
+            excerpt: post.excerpt,
+            tags: post.tags,
+            comments: post.comments,
+            category: post.category,
+            author: post.author,
+            imageUrl: post.imageUrl,
+            dateCreate: moment(post.dateCreate).format('LL'),
+            dateUpdate: moment(post.dateUpdate).format('LL'),
+            authorId: post.userId,
+            authorImg: post.userImg
         });
     });
 }

@@ -11,6 +11,8 @@ const Post = Record({
     tags: null,
     category: null,
     author: null,
+    authorId: null,
+    authorImg: null,
     dateCreate: null,
     dateUpdate: null,
 });

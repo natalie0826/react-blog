@@ -20,6 +20,10 @@ export const ACTION_TYPES = keyMirror({
     CREATE_POST_SUCCESS: null,
     CREATE_POST_FAILURE: null,
 
+    // get-create
+    GET_POST_SUCCESS: null,
+    GET_POST_FAILURE: null,
+
     // categories
     LOAD_CATEGORIES: null,
     LOAD_CATEGORIES_SUCCESS: null,

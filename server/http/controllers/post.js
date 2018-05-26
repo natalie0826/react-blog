@@ -17,7 +17,7 @@ router.get('', (req, res) => {
             [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.postId = post.id)'), 'comments']
         ]),
         include: [
-          { model: models.user, attributes: ['name', 'surname'] },
+          { model: models.user, attributes: ['name', 'surname', 'avatarUrl'] },
           { model: models.category, attributes: ['name'] },
           { model: models.tagsinpost, include: [
               { model: models.tag, attributes: ['name'] }
@@ -44,12 +44,14 @@ router.get('', (req, res) => {
               subtitle: foundedPost.dataValues.subtitle,
               category: foundedPost.dataValues.category.name,
               dateCreate: foundedPost.dataValues.dateCreate,
+              dateUpdate: foundedPost.dataValues.dateUpdate,
               text: foundedPost.dataValues.text,
               imageUrl: foundedPost.dataValues.imageUrl,
               comments: foundedPost.dataValues.comments,
               tags: tags,
               author: foundedPost.dataValues.user.name + ' ' + foundedPost.dataValues.user.surname,
-              userId: foundedPost.dataValues.userId
+              userId: foundedPost.dataValues.userId,
+              userImg: foundedPost.dataValues.user.avatarUrl
           };
           resultPosts.rows.push(answer);
         });
@@ -58,7 +60,6 @@ router.get('', (req, res) => {
       .catch((error) => {
           const answer = baseFunctions.getAnswer(false, 500, error);
           res.send(answer);
-          return;
       });
 });
 
@@ -69,22 +70,25 @@ router.post('', (req, res) => {
             baseFunctions.addTags(post.tags, (addedTags) => {
                 baseFunctions.addPostTags(addedTags, insertedPost.dataValues.id);
             });
-
-            console.log('post', insertedPost);
-            res.send((insertedPost.dataValues.id).toString());
-            return;
+            const answer = {
+                postId: insertedPost.dataValues.id,
+                status: true,
+                statusCode: 200,
+                message: 'New post has been successfully created'
+            };
+            res.send(answer);
         })
         .catch((error) => {
             const answer = baseFunctions.getAnswer(false, 500, error);
             res.send(answer);
-            return;
         });
 });
 
 router.get('/:id', (req, res) => {
     models.post.findById(req.params.id, {
         include: [
-           { model: models.user, attributes: ['name', 'surname'] },
+           { model: models.user, attributes: ['name', 'surname', 'avatarUrl'] },
+           { model: models.category, attributes: ['name'] },
            { model: models.tagsinpost, include: [
                { model: models.tag, attributes: ['name'] }
            ]}
@@ -101,10 +105,13 @@ router.get('/:id', (req, res) => {
                 title: foundedPost.dataValues.title,
                 subtitle: foundedPost.dataValues.subtitle,
                 dateCreate: foundedPost.dataValues.dateCreate,
+                dateUpdate: foundedPost.dataValues.dateUpdate,
+                category: foundedPost.dataValues.category.name,
                 text: foundedPost.dataValues.text,
                 tags: tags,
                 author: foundedPost.dataValues.user.name + ' ' + foundedPost.dataValues.user.surname,
-                userId: foundedPost.dataValues.userId
+                userId: foundedPost.dataValues.userId,
+                userImg: foundedPost.dataValues.user.avatarUrl
             }
 
             res.status(200).send(answer);

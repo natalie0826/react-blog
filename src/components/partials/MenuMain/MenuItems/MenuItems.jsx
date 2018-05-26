@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { List } from 'immutable';
-import { Menu, Icon, Spin } from 'antd';
-
-import { MenuItem } from '../MenuItem/MenuItem';
+import { Menu, Icon } from 'antd';
 
 const { SubMenu, Item, ItemGroup } = Menu;
 
@@ -12,7 +9,7 @@ export default class MenuItems extends React.Component {
 
     static propTypes = {
         // loadCategories: PropTypes.func.isRequired,
-        categories: PropTypes.instanceOf(List).isRequired,
+        categories: PropTypes.bool.isRequired,
         // isLoading: PropTypes.bool.isRequired
     };
 

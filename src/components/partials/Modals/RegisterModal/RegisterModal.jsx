@@ -90,6 +90,8 @@ class RegisterModal extends React.Component {
                   {getFieldDecorator('confirm', {
                     rules: [{
                       required: true, message: 'Please confirm your password!',
+                  },
+                  {
                       min: 6, message: 'Your password shoulbe at least 6 charaters'
                     }, {
                       validator: this.compareToFirstPassword,

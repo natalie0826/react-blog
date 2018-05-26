@@ -1,43 +1,45 @@
 import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { Icon, Layout, Menu, Spin } from 'antd';
+import { Layout, Menu, Spin } from 'antd';
 
 import ProfileMenu from '../partials/ProfileMenu/ProfileMenu';
 import { Routes } from '../Routes/Routes';
 import { MenuMainContainer } from '../../containers/MenuMainContainer';
 import { Footer } from '../partials/Footer/Footer';
 
+import ScrollToTop from '../partials/ScrollToTop/ScrollToTop';
+
 import './App.css';
 
-const { SubMenu, Item, ItemGroup } = Menu;
-const { Content, Sider } = Layout;
+const { Item } = Menu;
+const { Content } = Layout;
 
 export default class App extends React.Component {
-  constructor(props) {
+    constructor(props) {
       super(props);
       this.state = {
       collapsed: false,
     };
-  }
+    }
 
-  capitalize = (str) => {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
-  componentDidMount() {
+    componentDidMount() {
     this.props.fetchPosts();
     this.props.loadCategories();
-  }
+    }
 
-  componentDidUpdate() {
+    componentDidUpdate() {
     if(this.props.categories.size > 1) {
       this.props.categories.map(category => this.props.fetchPosts(category.get('id')));
     }
-  }
+    }
 
-  onCollapse = (collapsed) => {
+    onCollapse = (collapsed) => {
     this.setState({ collapsed });
-  }
+    }
+
+    capitalize = (str) => {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
   render() {
     const loading = <Spin />
@@ -52,6 +54,7 @@ export default class App extends React.Component {
 
     return (
       <Router>
+          <ScrollToTop>
         <div>
           <Layout className="layout" style={{ minHeight: '100vh' }}>
             {this.props.profileStatus && <ProfileMenu />}
@@ -66,6 +69,7 @@ export default class App extends React.Component {
             <Footer />
           </Layout>
         </div>
+    </ScrollToTop>
       </Router>
     );
 }

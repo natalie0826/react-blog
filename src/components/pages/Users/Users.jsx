@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Divider, Icon, Select, Radio  } from 'antd';
+import { Button, Divider, Select, Radio  } from 'antd';
 
 import './Users.css';
 import { PostOverlay } from '../../partials/PostOverlay/PostOverlay';

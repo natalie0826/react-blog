@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 
 import { Slider } from '../Slider/Slider';
 import { HorizontalGrid } from '../HorizontalGrid/HorizontalGrid';
@@ -8,7 +7,7 @@ import { VerticalGrid } from '../VerticalGrid/VerticalGrid';
 
 export const CategoriesGenerator = (props) => {
   CategoriesGenerator.propTypes = {
-    posts: PropTypes.instanceOf(List).isRequired,
+    posts: PropTypes.array.isRequired,
     index: PropTypes.number,
     count: PropTypes.number,
   };

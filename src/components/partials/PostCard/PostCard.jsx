@@ -21,7 +21,7 @@ export const PostCard = (props) => {
         comments: PropTypes.number,
         minutes: PropTypes.number,
         title: PropTypes.string.isRequired,
-        height: PropTypes.number,
+        height: PropTypes.string,
         showMeta: PropTypes.bool
     };
 
@@ -59,5 +59,6 @@ PostCard.defaultProps = {
     minutes: null,
     height: '250',
     showMeta: false,
-    author: "Ivanna"
+    author: "Ivanna",
+    isShort: false
 };

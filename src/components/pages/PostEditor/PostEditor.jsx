@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
-import {
-    Form, Select, InputNumber, Switch, Radio, Button, Upload, Icon, Input, notification
-  } from 'antd';
+import { Form, Select, Button, Upload, Icon, Input, notification } from 'antd';
   const FormItem = Form.Item;
   const Option = Select.Option;
-  const RadioButton = Radio.Button;
-  const RadioGroup = Radio.Group;
 
 const { TextArea } = Input;
 
@@ -34,7 +30,10 @@ const { TextArea } = Input;
         if (!err) {
             // this.openNotification('success');
           console.log('Received values of form: ', values);
-          this.props.createPost();
+          values.imageUrl="placeholder";
+          values.excerpt ="placeholder";
+          values.userId ="1";
+          this.props.createPost(values);
         }
       });
     }
@@ -46,10 +45,10 @@ const { TextArea } = Input;
       return e && e.fileList;
     }
 
-    addValues = values => {
+    addValues = (values, key) => {
       const children = [];
       values.map(value =>
-        children.push(<Option key={value.get('id')}>{value.get('name')}</Option>)
+        children.push(<Option key={value.get(key)}>{value.get('name')}</Option>)
       );
 
       return children;
@@ -97,13 +96,13 @@ const { TextArea } = Input;
               label="Please select your category"
               hasFeedback
             >
-              {getFieldDecorator('category', {
+              {getFieldDecorator('categoryId', {
                 rules: [
                   { required: true, message: 'Please select your category!' },
                 ],
               })(
                 <Select placeholder="Please select your category">
-                  {this.addValues(this.props.categories)}
+                  {this.addValues(this.props.categories, 'id')}
                 </Select>
               )}
             </FormItem>
@@ -123,7 +122,7 @@ const { TextArea } = Input;
                     placeholder="Please tags for your post"
                     onChange={handleChange}
                   >
-                  {this.addValues(this.props.tags)}
+                  {this.addValues(this.props.tags, 'name')}
                 </Select>
               )}
             </FormItem>
@@ -149,7 +148,7 @@ const { TextArea } = Input;
               label="Upload"
               extra="Upload main photo"
             >
-              {getFieldDecorator('upload', {
+              {getFieldDecorator('imageUrl11', {
                 valuePropName: 'fileList',
                 getValueFromEvent: this.normFile,
               })(
