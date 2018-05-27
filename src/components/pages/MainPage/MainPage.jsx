@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 // import { Link } from 'react-router-dom';
 import { Row, Col, Button, Tag, Radio, Spin } from 'antd';
 
@@ -19,7 +18,7 @@ const RadioGroup = Radio.Group;
 export default class MainPage extends React.Component {
     static propTypes = {
         loadTags: PropTypes.func.isRequired,
-        tags: PropTypes.instanceOf(List).isRequired,
+        tags: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
         tagsLoading: PropTypes.string,
     }
 
@@ -46,6 +45,7 @@ export default class MainPage extends React.Component {
         return categories.map(category =>
             <CategoryTitle
               key={category.get('id')}
+              id={category.get('id')}
               title={category.get('name')}
               loadStatus={isCategoriesLoading}
             >
@@ -91,7 +91,7 @@ export default class MainPage extends React.Component {
               <div className="sidebar-block">
                   <p className="recent-posts__divider">
                       <span className="recent-posts__title">SOCIAL networks</span>
-                      <span className="recent-posts__divider"></span>
+                      <span className="recent-posts__divider" />
                   </p>
                   <Icons content={socialNetworks} shape="circle" />
               </div>

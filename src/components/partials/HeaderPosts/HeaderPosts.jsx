@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'immutable';
 import { Row, Col, Divider, Button } from 'antd';
 
 import { PostCard } from '../PostCard/PostCard';
@@ -9,7 +8,7 @@ import { PostOverlay } from '../PostOverlay/PostOverlay';
 
 export const HeaderPosts = props => {
   HeaderPosts.propTypes = {
-    posts: PropTypes.instanceOf(List).isRequired
+    posts: PropTypes.array.isRequired
   };
 
   const createPostCard = (post, isShort = false, height) =>

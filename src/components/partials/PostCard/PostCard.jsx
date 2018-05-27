@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { PostMeta } from '../../common/PostMeta/PostMeta';
 import { PostText } from '../../common/PostText/PostText';
 import { PostHeader } from '../../common/PostHeader/PostHeader';
-import { PostImage } from '../../common/PostImage/PostImage';
+import { PostImageContainer } from '../../../containers/PostImageContainer';
 
 import './PostCard.css';
 
@@ -14,14 +14,16 @@ export const PostCard = (props) => {
     PostCard.propTypes = {
         isHorizontal: PropTypes.bool,
         isShort: PropTypes.bool,
+        showButtons: PropTypes.bool,
         id: PropTypes.number.isRequired,
         author: PropTypes.string,
+        date: PropTypes.string,
         text: PropTypes.string,
         image: PropTypes.string,
         comments: PropTypes.number,
         minutes: PropTypes.number,
         title: PropTypes.string.isRequired,
-        height: PropTypes.string,
+        height: PropTypes.number,
         showMeta: PropTypes.bool
     };
 
@@ -30,25 +32,25 @@ export const PostCard = (props) => {
     });
 
     return (
-        <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
-            <div className={postCardClasses}>
-                {props.image &&
-                  <div className="post-card__image-container" style={{'minHeight': `${props.height}px` }}>
-                      <PostImage image={props.image} />
-                  </div>
-                }
-                <div className="post-card">
-                    <PostHeader
-                      title={props.title}
-                      date={props.date}
-                      author={props.author}
-                    />
-                    {!props.isShort && <PostText text={props.text} />}
-                    {props.showMeta && <PostMeta comments={props.comments} minutes={props.minutes} />}
+    // <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
+        <div className={postCardClasses}>
+            {props.image &&
+                <div className="post-card__image-container" style={{'minHeight': `${props.height}px` }}>
+                    <PostImageContainer image={props.image} showButtons={props.showButtons} id={props.id} />
                 </div>
+            }
+            <div className="post-card">
+                <PostHeader
+                    title={props.title}
+                    date={props.date}
+                    author={props.author}
+                />
+                {!props.isShort && <PostText text={props.text} />}
+                {props.showMeta && <PostMeta comments={props.comments} minutes={props.minutes} />}
             </div>
-        </Link>
-    );
+        </div>
+    // {/* </Link> */}
+);
 }
 
 PostCard.defaultProps = {
@@ -57,8 +59,10 @@ PostCard.defaultProps = {
     text: null,
     comments: null,
     minutes: null,
-    height: '250',
+    height: 250,
     showMeta: false,
     author: "Ivanna",
-    isShort: false
+    isShort: false,
+    date: '',
+    showButtons: false
 };

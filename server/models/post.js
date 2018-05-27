@@ -67,6 +67,8 @@ module.exports = (sequelize, Sequelize) => {
         Post.hasMany(models.comment);
 
         Post.hasMany(models.tagsinpost);
+
+        Post.hasMany(models.bookmarks);
     };
 
     return Post;

@@ -21,6 +21,7 @@
   border-radius: 4px;
   overflow: hidden;
   background-color: white;
+  min-height: 450px;
 }
 
 .desc {
@@ -66,6 +67,6 @@
 
 .manage-post {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
 }

@@ -27,18 +27,35 @@ const getPosts = (posts) => {
     });
 }
 
+const findIndexPost = (state, id) => {
+    let indexPost;
+    state.get(-1).map((post, index) => {
+        if (post.get('id') === id) {
+            indexPost = index;
+        };
+
+        return indexPost;
+    });
+
+    return indexPost;
+}
+
 export default (state = initialState, action) => {
     switch(action.type) {
-      case ACTION_TYPES.FETCH_POSTS:
-        return state.setIn([action.payload.categoryId, 'isFetching'], 'process');
-      case ACTION_TYPES.FETCH_POSTS_SUCCESS:
-        return state
+        case ACTION_TYPES.FETCH_POSTS:
+            return state.setIn([action.payload.categoryId, 'isFetching'], 'process');
+        case ACTION_TYPES.FETCH_POSTS_SUCCESS:
+            return state
                 .setIn([action.payload.categoryId, 'isFetching'], 'finish')
                 .setIn([action.payload.categoryId, 'posts'], getPosts(action.payload.posts))
                 .setIn([action.payload.categoryId, 'count'], action.payload.count);
-      case ACTION_TYPES.FETCH_POSTS_FAILURE:
-        return state.setIn([action.payload.categoryId, 'error'], action.payload.error);
-      default:
-        return state;
+        case ACTION_TYPES.FETCH_POSTS_FAILURE:
+            return state.setIn([action.payload.categoryId, 'error'], action.payload.error);
+        case ACTION_TYPES.DELETE_POST_SUCCESS:
+            return state.setIn(
+                [-1, 'posts'], state.getIn([-1,'posts']).filter(post => post.get('id') !== action.payload.id)
+            );
+        default:
+            return state;
     }
 };

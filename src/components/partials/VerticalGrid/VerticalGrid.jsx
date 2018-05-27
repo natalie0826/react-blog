@@ -29,6 +29,7 @@ export const VerticalGrid = props => {
               :
               <PostCard
                 key={post.get('id')}
+                isShort
                 height={150}
                 id={post.get('id')}
                 image={post.get('imageUrl')}

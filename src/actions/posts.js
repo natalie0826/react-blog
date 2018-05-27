@@ -15,12 +15,14 @@ export const fetchPosts = (categoryId = -1, count = 24, page = 0) => dispatch =>
       .get(url)
       .then(res => {
           if (res.data.status === false) {
+              console.log('failure', res.data.message);
               dispatch(fetchPostsFailure(res.data.message, categoryId));
           } else {
               dispatch(fetchPostsSuccess(res.data, categoryId));
           }
       })
       .catch(error => {
+          console.log('failure', error);
           dispatch(fetchPostsFailure(error, categoryId));
       });
 }
@@ -102,6 +104,41 @@ export const getPostSuccess = post => ({
 
 export const getPostFailure = error => ({
     type: ACTION_TYPES.GET_POST_FAILURE,
+    payload: {
+        error,
+    }
+});
+
+/* get posts by user id */
+export const deletePost = id => (dispatch, getState) => {
+    api
+        .delete(`${BASE_URL}/posts/${id}`)
+        .then(res => {
+            if (res.data.status === false) {
+                dispatch(deletePostFailure(res.data.message));
+            } else {
+                console.log('success deleting', getState().getIn(['categories', 'categories']))
+                dispatch(deletePostSuccess(id));
+                // fetchPosts();
+                // getState().getIn(['categories', 'categories']).map(category => fetchPosts(category.get('id')));
+            }
+        })
+        .catch(error => {
+            console.log('failure deleting');
+            dispatch(deletePostFailure(error))
+        });
+}
+
+
+export const deletePostSuccess = id => ({
+    type: ACTION_TYPES.DELETE_POST_SUCCESS,
+    payload: {
+        id,
+    },
+});
+
+export const deletePostFailure = error => ({
+    type: ACTION_TYPES.DELETE_POST_FAILURE,
     payload: {
         error,
     }

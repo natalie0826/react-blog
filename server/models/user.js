@@ -49,9 +49,41 @@ module.exports = (sequelize, Sequelize) => {
         avatarUrl: {
             type: Sequelize.CHAR(255),
             defaultValue: 'http://via.placeholder.com/100x100'
+        },
+        birthday: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
+        },
+        job: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
+        },
+        country: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
+        },
+        interestedIn: {
+            type: Sequelize.TEXT,
+            allowNull: true
+        },
+        vk: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
+        },
+        twitter: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
+        },
+        facebook: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
+        },
+        github: {
+            type: Sequelize.CHAR(255),
+            allowNull: true,
         }
     }, {
-        timestamps: false,
+        timestamps: true,
         hooks: {
             afterValidate: function (user) {
                 user.password = bcrypt.hashSync(user.password);
@@ -62,7 +94,11 @@ module.exports = (sequelize, Sequelize) => {
     User.associate = function (models) {
         User.hasMany(models.post),
 
-        User.hasMany(models.comment);
+        User.hasMany(models.comment),
+
+        User.hasMany(models.followers),
+
+        User.hasMany(models.bookmarks);
     };
 
     return User;

@@ -63,6 +63,59 @@ router.get('', (req, res) => {
       });
 });
 
+router.get('/user/:id', (req, res) => {
+    models.post.findAndCountAll({
+        where: { 'userId': req.params.id },
+        attributes: Object.keys(models.post.attributes).concat([
+            [sequelize.literal('(SELECT COUNT(*) FROM comments WHERE comments.postId = post.id)'), 'comments']
+        ]),
+        include: [
+          { model: models.user, attributes: ['name', 'surname', 'avatarUrl'] },
+          { model: models.category, attributes: ['name'] },
+          { model: models.tagsinpost, include: [
+              { model: models.tag, attributes: ['name'] }
+          ]},
+        ],
+        order: [ ['dateCreate', 'DESC'] ],
+        limit: Number(req.query.limit) || 5000,
+        offset: Number(req.query.offset) || 0
+    })
+      .then(foundedPosts => {
+        let resultPosts = {
+          count: 0,
+          rows: []
+        };
+        resultPosts.count = foundedPosts.count;
+        foundedPosts.rows.map(foundedPost => {
+          let tags = [];
+          foundedPost.dataValues.tagsinposts.map((tagInPost) => {
+              tags.push(tagInPost.tag.name)
+          });
+          let answer = {
+              id: foundedPost.dataValues.id,
+              title: foundedPost.dataValues.title,
+              subtitle: foundedPost.dataValues.subtitle,
+              category: foundedPost.dataValues.category.name,
+              dateCreate: foundedPost.dataValues.dateCreate,
+              dateUpdate: foundedPost.dataValues.dateUpdate,
+              text: foundedPost.dataValues.text,
+              imageUrl: foundedPost.dataValues.imageUrl,
+              comments: foundedPost.dataValues.comments,
+              tags: tags,
+              author: foundedPost.dataValues.user.name + ' ' + foundedPost.dataValues.user.surname,
+              userId: foundedPost.dataValues.userId,
+              userImg: foundedPost.dataValues.user.avatarUrl
+          };
+          resultPosts.rows.push(answer);
+        });
+        res.status(200).send(resultPosts);
+      })
+      .catch((error) => {
+          const answer = baseFunctions.getAnswer(false, 500, error);
+          res.send(answer);
+      });
+});
+
 router.post('', (req, res) => {
     const post = req.body;
     models.post.create(post)

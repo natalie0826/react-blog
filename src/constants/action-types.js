@@ -33,4 +33,12 @@ export const ACTION_TYPES = keyMirror({
     LOAD_TAGS: null,
     LOAD_TAGS_SUCCESS: null,
     LOAD_TAGS_FAILURE: null,
+
+    // get posts by user
+    GET_POSTS_BY_USER_ID_SUCCESS: null,
+    GET_POSTS_BY_USER_ID_FAILURE: null,
+
+    // delete post
+    DELETE_POST_SUCCESS: null,
+    DELETE_POST_FAILURE: null
 });
