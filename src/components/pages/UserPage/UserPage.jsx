@@ -23,21 +23,6 @@ export default class UserPage extends React.Component {
 
     componentDidMount() {
         this.props.beInProfile();
-        this.setState({ isLoadingPosts: true });
-        console.log('ID', this.props.userInfo.get('id'));
-        const userId = parseInt(this.props.userInfo.get('id'), 10);
-
-        api
-            .get(`${BASE_URL}/posts/user/${userId}`)
-            .then(res => {
-                if (res.data.status === false) {
-                    console.log(res.data.message);
-                } else {
-                    console.log('DATA', res.data);
-                    this.setState({postsByUser: res.data.rows, isLoadingPosts: false});
-                }
-            })
-            .catch(error => console.log(error));
     }
 
     componentWillUnmount() {
@@ -123,22 +108,6 @@ export default class UserPage extends React.Component {
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={16} xl={16}>
                     <h1>Posts that you created earlier</h1>
-                    {/* {this.state.isLoadingPosts ? <Spin /> :
-                    this.state.postsByUser.map(post =>
-                        <PostCard
-                            isHorizontal
-                            showMeta
-                            showButtons
-                            key={post.id}
-                            id={post.id}
-                            image={post.imageUrl}
-                            text={post.text}
-                            comments={post.comments}
-                            author={post.author}
-                            date={post.dateUpdate}
-                            title={post.title}
-                        />
-                    )} */}
                     {!this.props.posts || this.props.posts.getIn([-1, 'isFetching']) !== 'finish' ? <Spin />: this.props.posts.getIn([-1, 'posts']).map(post => {
                             if (post.get('authorId') === userInfo.get('id')) {
                                 return (

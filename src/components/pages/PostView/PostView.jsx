@@ -4,6 +4,10 @@ import { OrderedMap } from 'immutable';
 import { Link } from 'react-router-dom';
 import { Row, Col, Icon, Button, Tooltip, Tag, Divider } from 'antd';
 
+import { VerticalGrid } from '../../partials/VerticalGrid/VerticalGrid';
+import CommentCreate from '../../common/CommentCreate/CommentCreate';
+import CommentList from '../../partials/CommentList/CommentList';
+
 import './PostView.css';
 
 export default class PostView extends React.Component {
@@ -96,7 +100,7 @@ export default class PostView extends React.Component {
                     <Divider />
                     <div className="post-additional">
                         <div className="post-author post-author__flex">
-                            <div className="author-avatar" style={{ 'backgroundImage': "url('https://images.unsplash.com/photo-1495078065017-564723e7e3e7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=09093dcdf66dbcd2397b9dc19384a899&auto=format&fit=crop&w=1400&q=80')" }}></div>
+                            <div className="author-avatar" style={{ 'backgroundImage': "url('https://images.unsplash.com/photo-1495078065017-564723e7e3e7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=09093dcdf66dbcd2397b9dc19384a899&auto=format&fit=crop&w=1400&q=80')" }} />
                             <div className="author-description">
                                 <div>
                                     <span className="description-name">{ currentPost.get('author') }</span>
@@ -121,74 +125,8 @@ export default class PostView extends React.Component {
                         </Divider>
                     </div>
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                            <Link to="/post/1" style={{ textDecoration: 'none' }}>
-                                <div className="card">
-                                    <div className="card__image">
-                                        <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-                                    </div>
-                                    <div className="card__description">
-                                        <div className="info">
-                                            {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                            <h1 className="info__title">Some more posts</h1>
-                                            <div className="info__subtitle">
-                                                <span>Pina Chaudhary</span>
-                                                <span> - </span>
-                                                <span className="info__subtitle--light">15 jul 2018</span>
-                                            </div>
-                                            <hr className="info__divider" />
-                                            <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </Col>
-                        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                            <Link to="/post/1" style={{ textDecoration: 'none' }}>
-                                <div className="card">
-                                    <div className="card__image">
-                                        <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-                                    </div>
-                                    <div className="card__description">
-                                        <div className="info">
-                                            {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                            <h1 className="info__title">Some more posts</h1>
-                                            <div className="info__subtitle">
-                                                <span>Pina Chaudhary</span>
-                                                <span> - </span>
-                                                <span className="info__subtitle--light">15 jul 2018</span>
-                                            </div>
-                                            <hr className="info__divider" />
-                                            <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-                        </Col>
-                        <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                            <Link to="/post/1" style={{ textDecoration: 'none' }}>
-                                <div className="card">
-                                    <div className="card__image">
-                                        <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-                                    </div>
-                                    <div className="card__description">
-                                        <div className="info">
-                                            {/* <span class="line _long"></span>
-                                    <span class="line _short"></span> */}
-                                            <h1 className="info__title">Some more posts</h1>
-                                            <div className="info__subtitle">
-                                                <span>Pina Chaudhary</span>
-                                                <span> - </span>
-                                                <span className="info__subtitle--light">15 jul 2018</span>
-                                            </div>
-                                            <hr className="info__divider" />
-                                            <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                        <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                            <VerticalGrid posts={this.props.posts.getIn([-1, 'posts']).filter((post, index) => index < 4)} columns={4} />
                         </Col>
                     </Row>
                 </Col>
@@ -198,7 +136,10 @@ export default class PostView extends React.Component {
                             <Divider>
                                 <h2 className="heading">Comments</h2>
                             </Divider>
+                            <CommentCreate />
+                            <CommentList postId={postId} />
                         </div>
+
                         {/* <h3 *ngIf="!hasAnyComments">There are no comments. Be first!</h3> */}
                         {/* <div *ngIf="hasAnyComments"> */}
                         <div>
@@ -233,25 +174,3 @@ export default class PostView extends React.Component {
         );
     }
 };
-
-// <Link to="/post/1" style={{ textDecoration: 'none' }}>
-// <div className="card">
-//     <div className="card__image">
-//         <img src="https://images.unsplash.com/photo-1509227035009-4bef0b738dd3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=92ba209a4e60bf47921d3ad689829adf&auto=format&fit=crop&w=666&q=80" alt="" />
-//     </div>
-//     <div className="card__description">
-//         <div className="info">
-//             {/* <span class="line _long"></span>
-//     <span class="line _short"></span> */}
-//             <h1 className="info__title">Some more posts</h1>
-//             <div className="info__subtitle">
-//                 <span>Pina Chaudhary</span>
-//                 <span> - </span>
-//                 <span className="info__subtitle--light">15 jul 2018</span>
-//             </div>
-//             <hr className="info__divider" />
-//             <p className="info__text">The publisher invested $35 million in Ubisoft Winnipeg hiring people, who can help build new tech to improve Ubisoft’s world-building tech.</p>
-//         </div>
-//     </div>
-// </div>
-// </Link>

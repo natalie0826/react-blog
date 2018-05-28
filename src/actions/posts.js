@@ -110,17 +110,14 @@ export const getPostFailure = error => ({
 });
 
 /* get posts by user id */
-export const deletePost = id => (dispatch, getState) => {
+export const deletePost = id => dispatch => {
     api
         .delete(`${BASE_URL}/posts/${id}`)
         .then(res => {
             if (res.data.status === false) {
                 dispatch(deletePostFailure(res.data.message));
             } else {
-                console.log('success deleting', getState().getIn(['categories', 'categories']))
                 dispatch(deletePostSuccess(id));
-                // fetchPosts();
-                // getState().getIn(['categories', 'categories']).map(category => fetchPosts(category.get('id')));
             }
         })
         .catch(error => {

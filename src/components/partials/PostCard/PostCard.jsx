@@ -32,7 +32,7 @@ export const PostCard = (props) => {
     });
 
     return (
-    // <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
         <div className={postCardClasses}>
             {props.image &&
                 <div className="post-card__image-container" style={{'minHeight': `${props.height}px` }}>
@@ -49,7 +49,7 @@ export const PostCard = (props) => {
                 {props.showMeta && <PostMeta comments={props.comments} minutes={props.minutes} />}
             </div>
         </div>
-    // {/* </Link> */}
+    </Link>
 );
 }
 
