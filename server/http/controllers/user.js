@@ -37,4 +37,19 @@ router.post('', (req, res) => {
         });
 });
 
+router.get('', (req, res) => {
+    models.user.findAndCountAll({
+        order: [ ['dateCreate', 'DESC'] ],
+        limit: Number(req.query.limit) || 5000,
+        offset: Number(req.query.offset) || 0
+    })
+      .then(foundedUsers => {
+        res.status(200).send(foundedUsers);
+      })
+      .catch((error) => {
+          const answer = baseFunctions.getAnswer(false, 500, error);
+          res.send(answer);
+      });
+});
+
 module.exports = router;

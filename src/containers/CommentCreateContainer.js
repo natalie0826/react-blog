@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 
-import CommentList from '../components/partials/CommentList/CommentList';
+import CommentCreate from '../components/common/CommentCreate/CommentCreate';
 
 const mapStateToProps = (state, props) => {
 
     return {
+        user: state.getIn(['auth', 'user']),
         isAuth: state.getIn(['auth', 'isAuth'])
     }
 };
 
-export const CommentListContainer = connect(
+export const CommentCreateContainer = connect(
     mapStateToProps,
     null,
-)(CommentList);
+)(CommentCreate);

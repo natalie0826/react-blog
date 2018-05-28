@@ -31,7 +31,7 @@ export default class ProfileMenu extends React.Component {
         </Menu.Item>
         <Menu.Item key="2">
           <Icon type="bulb" />
-          <span><a href="https://todo-react-redux.firebaseapp.com/" style={{ 'color': '#ffffff' }}>Open plan dashboard</a></span>
+          <span><a href="http://localhost:3002/" target="_blank" style={{ 'color': '#ffffff' }}>Open plan dashboard</a></span>
         </Menu.Item>
         <Menu.Item key="3">
           <Icon type="dashboard" />

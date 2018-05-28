@@ -1,6 +1,7 @@
 import React from 'react';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { Col, Row, Divider, Button, Tag, message, Spin } from 'antd';
+import { Col, Row, Divider, Button, Tag, Spin, Steps, message, DatePicker, Cascader, Input , Select } from 'antd';
 
 import { api } from '../../../tools/ajax-tool';
 import { BASE_URL } from '../../../constants/urls';
@@ -8,6 +9,9 @@ import { BASE_URL } from '../../../constants/urls';
 import { PostCard } from '../../partials/PostCard/PostCard';
 
 import './UserPage.css';
+
+const Step = Steps.Step;
+const Option = Select.Option;
 
 export default class UserPage extends React.Component {
     constructor(props) {
@@ -17,7 +21,18 @@ export default class UserPage extends React.Component {
             isDeletedSecond: false,
             postsByUser: [],
             isLoadingPosts: false,
-            userInfo: {}
+            userInfo: {},
+            current: 0,
+            userAdditionalInfo: {
+                country: [],
+                job: '',
+                interestedIn: '',
+                birthday: '',
+                vk: '',
+                twitter: '',
+                github: '',
+                facebook: ''
+            }
         }
     }
 
@@ -29,12 +44,110 @@ export default class UserPage extends React.Component {
         this.props.beInProfile();
     }
 
+    onCityChange = (value) => {
+        console.log('CITY', value);
+    }
+
+    onJobChange = value => {
+        console.log('JOB', value);
+    }
+
+    onInterestsChange = value => {
+        console.log('onInterestsChange', value);
+    }
+
+    onVKChange = value => {
+        console.log('onVKChange', value);
+    }
+
+    onInterestsChange
+
+    next = () => {
+        const current = this.state.current + 1;
+        this.setState({ current });
+    }
+
+    prev = () => {
+        const current = this.state.current - 1;
+        this.setState({ current });
+    }
+
+    onDateChange = (date, dateString) => {
+      console.log('DATE', date, dateString);
+    }
+
     render() {
         const {
             userInfo
         } = this.props;
 
+        const { current } = this.state;
+
         const userImage = 'url("' + userInfo.get('avatarUrl') + '")';
+
+        const options = [{
+          value: 'zhejiang',
+          label: 'Zhejiang',
+          children: [{
+            value: 'hangzhou',
+            label: 'Hangzhou',
+            children: [{
+              value: 'xihu',
+              label: 'West Lake',
+            }],
+          }],
+        }, {
+          value: 'jiangsu',
+          label: 'Jiangsu',
+          children: [{
+            value: 'nanjing',
+            label: 'Nanjing',
+            children: [{
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+            }],
+          }],
+        }];
+
+        const steps = [{
+            title: 'First',
+            content: 'Birthday & country',
+            show: <div style={{ 'display': 'flex', 'justifyContent': 'flexStart', 'flexFlow': 'column nowrap' }}>
+                <p style={{'fontSize': '1.1em'}}>Select your birthday and country where you are from</p>
+                <DatePicker
+                    onChange={this.onDateChange}
+                    format="YYYY-MM-DD"
+                    disabledDate={(current) => { return current && current > moment("12-25-1995", "MM-DD-YYYY");}}
+                    showTime={{ defaultValue: moment("12-25-1995", "MM-DD-YYYY") }}
+                    defaultValue={moment("12-25-1995", "MM-DD-YYYY")}
+                />
+                <Cascader options={options} onChange={this.onCityChange} placeholder="Please select" style={{ 'marginTop': '20px' }} />
+            </div>
+        }, {
+            title: 'Second',
+            content: 'Job & interests',
+            show: <div style={{ 'display': 'flex', 'justifyContent': 'flexStart', 'flexFlow': 'column nowrap' }}>
+                <p style={{'fontSize': '1.1em'}}>Select your birthday and country where you are from</p>
+                <Input placeholder="Type your job" onChange={this.onJobChange} />
+                <Input.TextArea onChange={this.onInterestsChange} placeholder="Please, add your interests" style={{ 'marginTop': '20px' }} autosize={{ minRows: 3, maxRows: 3 }} />
+            </div>
+        }, {
+            title: 'Third',
+            content: 'Social links',
+            show: <div style={{ 'display': 'flex', 'justifyContent': 'flexStart', 'flexFlow': 'column nowrap' }}>
+                <p style={{'fontSize': '1.1em'}}>Select your birthday and country where you are from</p>
+                <Input onChange={this.onVKChange} addonBefore="vk.com/" defaultValue="mysite" style={{ 'marginTop': '20px' }} />
+                <Input onChange={this.onTwitterChange} addonBefore="twitter.com/" defaultValue="mysite" style={{ 'marginTop': '20px' }} />
+                <Input onChange={this.onFacebookChange} addonBefore="facebook.com/" defaultValue="mysite" style={{ 'marginTop': '20px' }} />
+                <Input onChange={this.onGitHubChange} addonBefore="github.com/" defaultValue="mysite" style={{ 'marginTop': '20px' }} />
+            </div>
+        }, {
+            title: 'Last',
+            content: 'Done',
+            show: <div style={{ 'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', 'flexFlow': 'column nowrap' }}>
+                <h2>Thanks for adding info! Other users will know info about you!</h2>
+            </div>
+        }];
 
         return (
             <div>
@@ -47,15 +160,15 @@ export default class UserPage extends React.Component {
                             </div>
                             <div className="desc">
                                 <h2>{userInfo.get('name')} {userInfo.get('surname')}</h2>
-                                <p>
+                                <div>
                                     {userInfo.get('interestedIn') ?
                                     userInfo.get('interestedIn') :
                                     <div>
                                         <p>Please, add info about yourself</p>
                                         <Link to="profile/edit">
-                                            <Button>Add info</Button>
-                                        </Link>
-                                    </div>}</p>
+                                        <Button>Add info</Button>
+                                    </Link>
+                                </div>}</div>
                                 {/* <div className="social-network-profile">
                                 <Button size="large" shape="circle" icon="twitter" />
                                 <Button size="large" shape="circle" icon="facebook" />
@@ -107,32 +220,58 @@ export default class UserPage extends React.Component {
                     </div>
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={16} xl={16}>
-                    <h1>Posts that you created earlier</h1>
-                    {!this.props.posts || this.props.posts.getIn([-1, 'isFetching']) !== 'finish' ? <Spin />: this.props.posts.getIn([-1, 'posts']).map(post => {
-                            if (post.get('authorId') === userInfo.get('id')) {
-                                return (
-                                    <PostCard
-                                        isHorizontal
-                                        showMeta
-                                        showButtons
-                                        key={post.get('id')}
-                                        id={post.get('id')}
-                                        image={post.get('imageUrl')}
-                                        text={post.get('text')}
-                                        comments={post.get('comments')}
-                                        author={post.get('author')}
-                                        date={post.get('dateUpdate')}
-                                        title={post.get('title')}
-                                    />
-                                )
-                            } else {
-                                return null;
+                    <div>
+                        <h1>Dear {userInfo.get('name')}, add info about yourself!</h1>
+                        <Steps current={current}>
+                            {steps.map(item => <Step key={item.title} title={item.title} description={item.content} />)}
+                        </Steps>
+                        <div className="steps-content">{steps[this.state.current].show}</div>
+                        <div className="steps-action">
+                            {
+                                this.state.current < steps.length - 1
+                                &&
+                                <Button type="primary" onClick={() => this.next()}>Next</Button>
                             }
-                        }
-                    )}
-                </Col>
-            </Row>
-        </div>
-    );
+                            {
+                                this.state.current === steps.length - 1
+                                &&
+                                <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
+                            }
+                            {
+                                this.state.current > 0
+                                &&
+                                <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+                                    Previous
+                                </Button>
+                            }
+                        </div>
+                    </div>
+                    {/* <h1>Posts that you created earlier</h1>
+                        {!this.props.posts || this.props.posts.getIn([-1, 'isFetching']) !== 'finish' ? <Spin />: this.props.posts.getIn([-1, 'posts']).map(post => {
+                        if (post.get('authorId') === userInfo.get('id')) {
+                        return (
+                        <PostCard
+                        isHorizontal
+                        showMeta
+                        showButtons
+                        key={post.get('id')}
+                        id={post.get('id')}
+                        image={post.get('imageUrl')}
+                        text={post.get('text')}
+                        comments={post.get('comments')}
+                        author={post.get('author')}
+                        date={post.get('dateUpdate')}
+                        title={post.get('title')}
+                    />
+                )
+            } else {
+            return null;
+        }
+    }
+)} */}
+</Col>
+</Row>
+</div>
+);
 }
 };

@@ -31,26 +31,28 @@ export const PostCard = (props) => {
         'post-card-container--horizontal': props.isHorizontal
     });
 
+    const redirectLink = props.showButtons ? '/profile' : `/post/${props.id}`;
+
     return (
-    <Link to={`/post/${props.id}`} style={{ textDecoration: 'none' }}>
-        <div className={postCardClasses}>
-            {props.image &&
-                <div className="post-card__image-container" style={{'minHeight': `${props.height}px` }}>
-                    <PostImageContainer image={props.image} showButtons={props.showButtons} id={props.id} />
+        <Link to={redirectLink} style={{ textDecoration: 'none' }}>
+            <div className={postCardClasses}>
+                {props.image &&
+                    <div className="post-card__image-container" style={{'minHeight': `${props.height}px` }}>
+                        <PostImageContainer image={props.image} showButtons={props.showButtons} id={props.id} />
+                    </div>
+                }
+                <div className="post-card">
+                    <PostHeader
+                        title={props.title}
+                        date={props.date}
+                        author={props.author}
+                    />
+                    {!props.isShort && <PostText text={props.text} />}
+                    {props.showMeta && <PostMeta comments={props.comments} minutes={props.minutes} />}
                 </div>
-            }
-            <div className="post-card">
-                <PostHeader
-                    title={props.title}
-                    date={props.date}
-                    author={props.author}
-                />
-                {!props.isShort && <PostText text={props.text} />}
-                {props.showMeta && <PostMeta comments={props.comments} minutes={props.minutes} />}
             </div>
-        </div>
-    </Link>
-);
+        </Link>
+    );
 }
 
 PostCard.defaultProps = {

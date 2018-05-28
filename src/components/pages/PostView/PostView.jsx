@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { Row, Col, Icon, Button, Tooltip, Tag, Divider } from 'antd';
 
 import { VerticalGrid } from '../../partials/VerticalGrid/VerticalGrid';
-import CommentCreate from '../../common/CommentCreate/CommentCreate';
-import CommentList from '../../partials/CommentList/CommentList';
+import { CommentCreateContainer } from '../../../containers/CommentCreateContainer';
+import { CommentListContainer } from '../../../containers/CommentListContainer';
 
 import './PostView.css';
 
@@ -136,8 +136,8 @@ export default class PostView extends React.Component {
                             <Divider>
                                 <h2 className="heading">Comments</h2>
                             </Divider>
-                            <CommentCreate />
-                            <CommentList postId={postId} />
+                            <CommentCreateContainer postId={postId} />
+                            <CommentListContainer postId={postId} />
                         </div>
 
                         {/* <h3 *ngIf="!hasAnyComments">There are no comments. Be first!</h3> */}
