@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 
 const { Sider } = Layout;
@@ -25,25 +26,28 @@ export default class ProfileMenu extends React.Component {
       >
       <div className="logo" style={{ 'height': '64px', 'backgroundColor': '#673ab7' }} />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-        <Menu.Item key="1">
+        {/* <Menu.Item key="1">
           <Icon type="setting" />
           <span>Edit my profile</span>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="2">
           <Icon type="bulb" />
           <span><a href="http://localhost:3002/" target="_blank" style={{ 'color': '#ffffff' }}>Open plan dashboard</a></span>
         </Menu.Item>
         <Menu.Item key="3">
+            <Link to="/create/post">
           <Icon type="dashboard" />
-          <span style={{'color':'white'}}>Create new post</span>
+          <span style={{'color':'white'}}>Create new post</span></Link>
         </Menu.Item>
-        <Menu.Item key="4">
+        {/* <Menu.Item key="4">
           <Icon type="star" />
           <span>View created posts</span>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="5">
+            <Link to="/users" >
           <Icon type="profile" />
-          <span>View followers</span>
+          <span>View other users</span>
+      </Link>
         </Menu.Item>
       </Menu>
     </Sider>

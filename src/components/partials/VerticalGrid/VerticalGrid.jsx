@@ -21,7 +21,6 @@ export const VerticalGrid = props => {
                 key={post.get('id')}
                 id={post.get('id')}
                 image={post.get('imageUrl')}
-                text={post.get('text')}
                 author={post.get('author')}
                 date={post.get('dateUpdate')}
                 title={post.get('title')}

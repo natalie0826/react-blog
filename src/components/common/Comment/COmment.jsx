@@ -33,6 +33,7 @@ export default class Comment extends React.Component {
                     // dispatch(deleteCommentFailure(res.data.message));
                 } else {
                     this.openNotificationWithIcon('success', 'Congratulations! Your comment has been successfully deleted.');
+                    this.props.fetchComments();
                     // dispatch(deleteCommentSuccess(id));
                 }
             })

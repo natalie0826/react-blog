@@ -27,6 +27,10 @@
     flex: 6;
 }
 
+.user-post {
+    max-width: 240px;
+}
+
 .user-post + .user-post {
     margin-left: 20px;
 }

@@ -16,7 +16,6 @@ export const HorizontalGrid = (props) => {
             key={post.get('id')}
             id={post.get('id')}
             image={post.get('imageUrl')}
-            text={post.get('text')}
             comments={post.get('comments')}
             author={post.get('author')}
             date={post.get('dateUpdate')}

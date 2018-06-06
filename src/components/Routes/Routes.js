@@ -9,7 +9,7 @@ import { PostEditorContainer } from '../../containers/PostEditorContainer';
 import { ByCategoryContainer } from '../../containers/ByCategoryContainer';
 import UserProfile from '../pages/UserProfile/UserProfile';
 import { About } from '../pages/About/About';
-import { Users } from '../pages/Users/Users';
+import Users from '../pages/Users/Users';
 import { EditProfileContainer } from '../../containers/EditProfileContainer';
 import { NoMatch } from '../pages/NoMatch/NoMatch';
 

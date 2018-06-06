@@ -23,6 +23,9 @@ export default class CommentList extends React.Component {
     }
 
     componentDidMount() {
+        this.fetchComments();
+    }
+    fetchComments = () => {
         const url = `${BASE_URL}/posts/${this.props.postId}/comments`
         api
         .get(url)
@@ -66,7 +69,7 @@ export default class CommentList extends React.Component {
                 {(!this.state.comments && !this.state.commentsReceived) && <Spin />}
                 {(this.state.comments.length < 1 && this.state.commentsReceived)
                     ? <h3>There are no comments. Be first!</h3>
-                    : this.state.comments.map(comment => <Comment isAuth={this.props.isAuth} postId={this.props.postId} comment={comment} key={comment.id} />)
+                    : this.state.comments.map(comment => <Comment fetchComments={this.fetchComments} isAuth={this.props.isAuth} postId={this.props.postId} comment={comment} key={comment.id} />)
                 }
             </div>
         )
