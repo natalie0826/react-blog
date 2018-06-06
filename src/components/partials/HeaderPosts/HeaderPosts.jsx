@@ -18,7 +18,6 @@ export const HeaderPosts = props => {
         isShort={isShort}
         height={height}
         image={post.get('imageUrl')}
-        text={post.get('text')}
         comments={post.get('comments')}
         author={post.get('author')}
         date={post.get('dateUpdate')}

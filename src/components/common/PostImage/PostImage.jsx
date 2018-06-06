@@ -34,9 +34,9 @@ export default class PostImage extends React.Component {
             <div className="post-card__image" style={{ 'backgroundImage': `url("${this.props.image}")` }}>
                 {this.props.showButtons ?
                     <div className="manage-post">
-                        <Link to={`/post/${this.props.id}/edit`}>
+                        {/* <Link to={`/post/${this.props.id}/edit`}>
                         <Button shape="circle" icon="edit" style={{'marginRight': '10px'}} />
-                    </Link>
+                    </Link> */}
                     <Popconfirm title="Are you sure delete this post?" onConfirm={this.confirm} onCancel={this.cancel} okText="Yes" cancelText="No">
                         <Button shape="circle" icon="delete" />
                     </Popconfirm>

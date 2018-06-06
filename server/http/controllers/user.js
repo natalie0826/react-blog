@@ -38,11 +38,7 @@ router.post('', (req, res) => {
 });
 
 router.get('', (req, res) => {
-    models.user.findAndCountAll({
-        order: [ ['dateCreate', 'DESC'] ],
-        limit: Number(req.query.limit) || 5000,
-        offset: Number(req.query.offset) || 0
-    })
+    models.user.findAll()
       .then(foundedUsers => {
         res.status(200).send(foundedUsers);
       })
