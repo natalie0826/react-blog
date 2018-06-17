@@ -1,7 +1,22 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { Col, Row, Divider, Button, Tag, Spin, Steps, message, DatePicker, Cascader, Input , Select } from 'antd';
+import {
+    Badge,
+    Col,
+    Row,
+    Button,
+    Divider,
+    Tag,
+    Spin,
+    Steps,
+    message,
+    notification,
+    DatePicker,
+    Cascader,
+    Input,
+    Select,
+} from 'antd';
 
 import { api } from '../../../tools/ajax-tool';
 import { BASE_URL } from '../../../constants/urls';
@@ -79,6 +94,48 @@ export default class UserPage extends React.Component {
         console.log('DATE', date, dateString);
     }
 
+    openNotification = () => {
+        // Добавь стили сюда в случае необходимости, width, marginLeft, marginRight
+        const followerImage = 'url("https://images.unsplash.com/photo-1476657680631-c07285ff2581?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1602b4842fc9397502d209997d16d13d&auto=format&fit=crop&w=710&q=80")';
+        const folImage = 'url("https://images.unsplash.com/photo-1520612822824-290899816090?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=aa64aa8f024708f358c62da2d2f0111f&auto=format&fit=crop&w=1050&q=80")';
+         const args = {
+            message: <h3>New followers</h3>,
+            description: <div>
+            <div className="post-author">
+                    <div className="author-avatar" style={{ 'backgroundImage': followerImage }} />
+                    <div className="author-description">
+                        <div>
+                            <span className="description-name">Константин Захаров</span>
+                        </div>
+                        <div>
+                            <span className="description-date">25 лет</span>
+                            <span className="description-minutes">Геймдизайнер</span>
+                        </div>
+                    </div>
+                </div>
+                <Divider/>
+                <div className="post-author">
+                        <div className="author-avatar" style={{ 'backgroundImage': folImage }} />
+                        <div className="author-description">
+                            <div>
+                                <span className="description-name">Анжелика Блум</span>
+                            </div>
+                            <div>
+                                <span className="description-date">22 года</span>
+                                <span className="description-minutes">Аналитик</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>,
+            duration: 0,
+            style: {
+              marginTop: 70
+            }
+          };
+          notification.open(args);
+    };
+
+
     render() {
         const {
             userInfo
@@ -154,22 +211,26 @@ export default class UserPage extends React.Component {
 
 return (
     <div>
-
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col xs={24} sm={24} md={24} lg={8} xl={8}>
                 <div className="info-profile">
-                    <div className="info-profile-avatar">
-                        <div className="avatar" style={{'backgroundImage': userImage }} />
+                    <div className="info-profile-avatar" >
+                        <div className="avatar" style={{'backgroundImage': userImage}}>
+                            <Badge count={2} overflowCount={1} style={{'cursor':'pointer'}} title="Notifications" onClick={this.openNotification}>
+                    </Badge>
+                </div>
                     </div>
                     <div className="desc">
                         <h2>{userInfo.get('name')} {userInfo.get('surname')}</h2>
                         <div>
+                            {/* удалить строки 227-232 а вместо них добавить отображение профессии и других жданных со степпера */}
                             {userInfo.get('interestedIn') ?
                             userInfo.get('interestedIn') :
                             <div>
                                 <p>Please, add info about yourself</p>
                                 <Button onClick={this.addInfo}>Add info</Button>
-                            </div>}</div>
+                            </div>}
+                        </div>
                             {/* <div className="social-network-profile">
                             <Button size="large" shape="circle" icon="twitter" />
                             <Button size="large" shape="circle" icon="facebook" />
