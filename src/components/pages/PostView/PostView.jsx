@@ -16,13 +16,13 @@ export default class PostView extends React.Component {
         posts: PropTypes.instanceOf(OrderedMap).isRequired,
     }
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll, false);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll, false);
-    }
+    // componentDidMount() {
+    //     window.addEventListener('scroll', this.handleScroll, false);
+    // }
+    //
+    // componentWillUnmount() {
+    //     window.removeEventListener('scroll', this.handleScroll, false);
+    // }
 
     findPostById = (posts, id) => {
         let foundPost;
@@ -82,20 +82,7 @@ export default class PostView extends React.Component {
                     <div className="post-image" style={{ 'backgroundImage': postImage }} />
                 </div>
                 <div className="post-text-container">
-                    <div className="post-actions" id="actions">
-                        <Tooltip title="I like it">
-                            <Icon type="heart-o" style={{ 'fontSize': '2em', 'color': '#a5a5a5'}} />
-                        </Tooltip>
-                        <Tooltip title="Comment the post">
-                            <Icon type="message" style={{ 'fontSize': '2em', 'color': '#a5a5a5'}} />
-                        </Tooltip>
-                        <Tooltip title="Share on Twitter">
-                            <Icon type="twitter" style={{ 'fontSize': '2em', 'color': '#a5a5a5'}} />
-                        </Tooltip>
-                        <Tooltip title="Share on Facebook">
-                            <Icon type="facebook" style={{ 'fontSize': '2em', 'color': '#a5a5a5'}} />
-                        </Tooltip>
-                    </div>
+
                     <div className="post-text">{ currentPost.get('text') }</div>
                     <Divider />
                     <div className="post-additional">

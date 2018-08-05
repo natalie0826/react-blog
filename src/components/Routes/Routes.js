@@ -28,7 +28,7 @@ export const Routes = () => {
                 )}
             /> */}
             <Route path="/create/post" component={PostEditorContainer} />
-            <Route path="/post/:id/edit" render={PostEditorContainer} />
+            <Route path="/edit/post/:id" component={PostEditorContainer} />
             <Route path="/about" strict component={About} />
             <Route path="/users" strict component={Users} />
             <Route path="/user/:id" strict component={UserProfile} />

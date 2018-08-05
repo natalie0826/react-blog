@@ -78,7 +78,7 @@ p.recent-posts__divider span.recent-posts__divider {
 .ant-carousel .slick-slide {
     text-align: center;
     height: 300px;
-    background: #364d79;
+    width: 100%;
     overflow: hidden;
 }
 

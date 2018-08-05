@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-// import { getPost } from '../actions/posts';
+import { deletePost } from '../actions/posts';
 
 import PostView from '../components/pages/PostView/PostView';
 

@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
-import { Form, Select, Button, Upload, Icon, Input, notification } from 'antd';
+import { Form, Select, Button, Upload, Icon, Input, notification, Badge } from 'antd';
+import { api } from '../../../tools/ajax-tool';
+import { BASE_URL } from '../../../constants/urls';
+
+import './PostEditor.css';
+
   const FormItem = Form.Item;
   const Option = Select.Option;
 
@@ -15,6 +20,32 @@ const { TextArea } = Input;
     static propTypes = {
       tags: PropTypes.instanceOf(List).isRequired,
       categories: PropTypes.instanceOf(List).isRequired
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            post: {},
+            showImage: true
+        }
+    }
+
+    componentDidMount() {
+        const postId = parseInt(this.props.match.params.id, 10);
+        api
+            .get(`${BASE_URL}/posts/${postId}`)
+            .then(res => {
+                if (res.data.status === false) {
+                    console.log('failure');
+                } else {
+                    this.setState({post: res.data});
+                }
+            })
+            .catch(error => console.log('failure'));
+    }
+
+    hideImage = () => {
+        this.setState({showImage: false});
     }
 
     openNotificationWithIcon = (type) => {
@@ -37,6 +68,7 @@ const { TextArea } = Input;
         }
       });
     }
+
     normFile = (e) => {
       console.log('Upload event:', e);
       if (Array.isArray(e)) {
@@ -63,7 +95,7 @@ const { TextArea } = Input;
 
       return (
         <div>
-          <h1 style={{ 'textAlign': 'center' }}>Create new post</h1>
+          <h1 style={{ 'textAlign': 'center' }}>{this.props.match.params.id ? 'Edit existing post' : 'Create new post'}</h1>
           <Form onSubmit={this.handleSubmit}>
             <FormItem
               {...formItemLayout}
@@ -74,7 +106,8 @@ const { TextArea } = Input;
                 rules: [
                   { required: true, message: 'Please enter a title' },
                 ],
-              })(<Input placeholder="Please enter a title" />)
+                initialValue: this.state.post.title
+            })(<Input placeholder="Please enter a title" />)
               }
             </FormItem>
 
@@ -87,6 +120,7 @@ const { TextArea } = Input;
                 rules: [
                   { required: true, message: 'Please enter a subtitle' },
                 ],
+                initialValue: this.state.post.subtitle
               })(<Input placeholder="Please enter a subtitle" />)
               }
             </FormItem>
@@ -100,6 +134,7 @@ const { TextArea } = Input;
                 rules: [
                   { required: true, message: 'Please select your category!' },
                 ],
+                initialValue: this.state.post.category
               })(
                 <Select placeholder="Please select your category">
                   {this.addValues(this.props.categories, 'id')}
@@ -135,6 +170,7 @@ const { TextArea } = Input;
                 rules: [
                   { required: true, message: 'Please enter text!' },
                 ],
+                initialValue: this.state.post.text
               })(
                 <TextArea
                   placeholder="Your text here..."
@@ -142,6 +178,19 @@ const { TextArea } = Input;
                 />
               )}
             </FormItem>
+
+{this.state.post.id && this.state.showImage &&
+            <FormItem
+              {...formItemLayout}
+              label="Existing photo"
+              hasFeedback
+            >
+                <div style={{ 'position': 'relative'}}>
+                    <Badge count="X" style={{'cursor':'pointer'}} title="Delete" onClick={this.hideImage}>
+                        <img src={this.state.post.imageUrl} style={{ 'height': '250px', width: 'auto'}} />
+                    </Badge>
+                </div>
+          </FormItem>}
 
             <FormItem
               {...formItemLayout}
@@ -181,7 +230,7 @@ const { TextArea } = Input;
             </FormItem>
 
             <FormItem wrapperCol={{ span: 12, offset: 6 }}>
-              <Button type="primary" htmlType="submit">Create new post</Button>
+              <Button type="primary" htmlType="submit">{this.props.match.params.id ? 'Save your post' : 'Create new post'}</Button>
             </FormItem>
           </Form>
         </div>

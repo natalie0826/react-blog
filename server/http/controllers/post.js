@@ -160,6 +160,7 @@ router.get('/:id', (req, res) => {
                 dateCreate: foundedPost.dataValues.dateCreate,
                 dateUpdate: foundedPost.dataValues.dateUpdate,
                 category: foundedPost.dataValues.category.name,
+                imageUrl: foundedPost.dataValues.imageUrl,
                 text: foundedPost.dataValues.text,
                 tags: tags,
                 author: foundedPost.dataValues.user.name + ' ' + foundedPost.dataValues.user.surname,
